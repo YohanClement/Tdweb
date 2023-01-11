@@ -33,26 +33,26 @@
 
 		<div class="form-outline mb-4">
 			<label for="lastname"><b>Lastname</b></label> <input type="text"
-				class="form-control form-control-lg" placeholder='${user.lastname}'
-				name="lastname">
+				class="form-control form-control-lg" placeholder='lastname'
+				name="lastname" value="${user.lastname}">
 		</div>
 
 		<div class="form-outline mb-4">
 			<label for="rolename"><b>Role Name</b></label> <input type="text"
-				class="form-control form-control-lg" placeholder="${user.rolename}"
-				name="rolename">
+				class="form-control form-control-lg" placeholder="rolename"
+				name="rolename" value="${user.rolename}">
 		</div>
 
 		<div class="form-outline mb-4">
 			<label for="email"><b>Email</b></label> <input type="text"
-				class="form-control form-control-lg" placeholder="${user.rolename}"
-				name="email">
+				class="form-control form-control-lg" placeholder="email"
+				name="email" value="${user.email}">
 		</div>
 
 		<div class="form-outline mb-4">
 			<label for="password"><b>Password</b></label> <input type="password"
-				class="form-control form-control-lg" placeholder="${user.rolename}"
-				name="password">
+				class="form-control form-control-lg" placeholder="password"
+				name="password" value="${user.password}">
 		</div>
 
 		<div class="pt-1 mb-4">

@@ -31,6 +31,7 @@
 				<td>Last Name</td>
 				<td>Start Date</td>
 				<td>Role Name</td>
+				<td>Email</td>
 				<td colspan="2">Action</td>
 			</tr>
 		</thead>
@@ -43,6 +44,7 @@
 					<td>${u.firstname}</td>
 					<td>${u.lastname}</td>
 					<td>${u.creationDate}</td>
+					<td>${u.email}</td>
 					<td>${u.rolename}</td>
 
 					<td><form action="change" method="get">

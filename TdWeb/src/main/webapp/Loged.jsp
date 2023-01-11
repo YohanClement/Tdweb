@@ -23,7 +23,7 @@
 				<li class="nav-item active"><a class="nav-link" href="tab">Employee</a></li>
 				<li class="nav-item"><a class="nav-link" href="AppEmp.html">Ajouter
 						un employee</a></li>
-				<li class="nav-item"><a class="nav-link deco" href="logout">Déconnexion</a></li>
+				<li class="nav-item deco"><a class="nav-link deco" href="logout">Déconnexion</a></li>
 			</ul>
 		
 	</nav>

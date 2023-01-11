@@ -10,8 +10,8 @@ h1 {
 }
 
 .deco {
-	top: 0;
-	right: 0;
+	display: flexbox;
+	justify-content: flex-end;
 }
 
 
