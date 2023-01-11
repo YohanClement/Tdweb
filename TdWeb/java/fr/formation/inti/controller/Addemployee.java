@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.formation.inti.entity.User;
 import fr.formation.inti.service.UserService;
@@ -54,18 +55,27 @@ public class Addemployee extends HttpServlet {
 		long now = System.currentTimeMillis();
 		Timestamp datecreation = new Timestamp(now);
 
-		User neo = new User();
-		neo.setEmail(email);
-		neo.setFirstname(firstname);
-		neo.setLastname(lastname);
-		neo.setPassword(password);
-		neo.setRolename(rolename);
-		neo.setCreationDate(datecreation);
+		User user = ud.findbylog(email, password);
+		if (user == null) {
+			User neo = new User();
+			neo.setEmail(email);
+			neo.setFirstname(firstname);
+			neo.setLastname(lastname);
+			neo.setPassword(password);
+			neo.setRolename(rolename);
+			neo.setCreationDate(datecreation);
 
-		ud.save(neo);
+			ud.save(neo);
+			request.getServletContext().getRequestDispatcher("/tab").forward(request, response);
 
-		request.getServletContext().getRequestDispatcher("/tab").forward(request, response);
+		} else {
+			String message = "Utilisateur déja connu";
+			HttpSession mysession = request.getSession();
+			mysession.setAttribute("dejaco", message);
+			request.getServletContext().getRequestDispatcher("/").forward(request, response);
+		}
 
+		
 	}
 
 }

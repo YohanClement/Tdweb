@@ -2,7 +2,7 @@ package fr.formation.inti.entity;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +18,7 @@ public class User {
 	private String firstname;
 	private String lastname;
 	private String rolename;
-	private Timestamp creationDate;
+	private Date creationDate;
 	
 	public User() {
 	}
@@ -79,12 +79,12 @@ public class User {
 		this.rolename = rolename;
 	}
 	@Column(name = "CreationDate")
-	public Timestamp getCreationDate() {
+	public Date getCreationDate() {
 		return creationDate;
 	}
 
 
-	public void setCreationDate(Timestamp creationDate) {
+	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
 	}
 

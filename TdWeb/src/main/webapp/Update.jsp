@@ -6,9 +6,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.js"></script>
 
@@ -16,6 +15,24 @@
 <title>Mise a jour</title>
 </head>
 <body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+		<a class="navbar-brand" href="#">CRUD</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNav" aria-controls="navbarNav"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+				<li class="nav-item active"><a class="nav-link text-white"
+					href="tab">Liste des employés</a></li>
+				<li class="nav-item"><a class="nav-link text-white"
+					href="AppEmp.jsp">Ajouter un employé</a></li>
+			</ul>
+		</div>
+		<a href="logout" class="btn btn-primary">Logout</a>
+
+	</nav>
 	<h2 class="fw-normal mb-3 pb-3 text-center">Editer le profil de
 		l'employé ${user.lastname} ${user.firstname}</h2>
 

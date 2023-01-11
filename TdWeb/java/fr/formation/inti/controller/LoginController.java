@@ -62,6 +62,7 @@ public class LoginController extends HttpServlet {
 		} else {
 
 			HttpSession mysession = request.getSession();
+			mysession.setAttribute("email", email);
 			mysession.setAttribute("message",
 					"<h1> Bonjour " + user.getFirstname() + " " + user.getLastname() + "<h1>");
 			request.getServletContext().getRequestDispatcher("/Loged.jsp").forward(request, response);
