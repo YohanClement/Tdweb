@@ -18,7 +18,8 @@
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<ul class="navbar-nav">
+		<ul class="navbar-nav d-flex">
+		<li class="nav-item"><a class="nav-link" href="Loged.jsp">Accueil</a></li>
 			<li class="nav-item"><a class="nav-link deco" href="logout">Déconnexion</a></li>
 		</ul>
 	</nav>

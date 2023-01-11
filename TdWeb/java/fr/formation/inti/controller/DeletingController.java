@@ -34,7 +34,7 @@ public class DeletingController extends HttpServlet {
 		String iduser = request.getParameter("id");
 		int id = Integer.parseInt(iduser);
 		ud.deleteById(id);
-		request.getServletContext().getRequestDispatcher("/Loged.jsp").forward(request, response);
+		request.getServletContext().getRequestDispatcher("/tab").forward(request, response);
 	}
 
 	/**

@@ -67,7 +67,7 @@ public class ModificationController extends HttpServlet {
 		user.setPassword(password);
 		ud.save(user);
 		
-		request.getServletContext().getRequestDispatcher("/Loged.jsp").forward(request, response);
+		request.getServletContext().getRequestDispatcher("/tab").forward(request, response);
 
 	}
 

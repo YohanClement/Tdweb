@@ -23,6 +23,10 @@ h1 {
 	color: green;
 }
 
+tr:hover{
+	background-color: lime;
+}
+
 button {
 	border: none;
 	background-color: transparent;
