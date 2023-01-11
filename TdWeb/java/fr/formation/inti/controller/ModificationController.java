@@ -1,6 +1,7 @@
 package fr.formation.inti.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,9 +35,12 @@ public class ModificationController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String iduser = request.getParameter("id");
-		int id = Integer.parseInt(iduser);
+		Integer id = Integer.parseInt(iduser);
 		User user = ud.findById(id);
+		
+		request.setAttribute("id", id);
 		request.setAttribute("user", user);
+
 		request.getServletContext().getRequestDispatcher("/Update.jsp").forward(request, response);
 	}
 
@@ -47,7 +51,7 @@ public class ModificationController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String iduser = request.getParameter("id");
-		int id = Integer.parseInt(iduser);
+		Integer id = Integer.parseInt(iduser);
 		User user = ud.findById(id);
 
 		String email = request.getParameter("email");
@@ -62,7 +66,7 @@ public class ModificationController extends HttpServlet {
 		user.setRolename(rolename);
 		user.setPassword(password);
 		ud.save(user);
-		request.setAttribute("user", user);
+		
 		request.getServletContext().getRequestDispatcher("/Loged.jsp").forward(request, response);
 
 	}

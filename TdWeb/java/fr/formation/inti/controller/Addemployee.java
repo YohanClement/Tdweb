@@ -17,14 +17,14 @@ import fr.formation.inti.service.UserServiceImpl;
  * Servlet implementation class addemployee
  */
 @WebServlet("/add")
-public class addemployee extends HttpServlet {
+public class Addemployee extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserService ud;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public addemployee() {
+	public Addemployee() {
 		super();
 		ud = new UserServiceImpl();
 	}
