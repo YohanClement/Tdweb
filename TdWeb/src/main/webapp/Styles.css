@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+div h1 {
+	color: red;
+	text-align: center;
+}
+
+h1 {
+	text-align: center;
+}
+
+.deco {
+	top: 0;
+	right: 0;
+}
+
+
+.bi-x-square-fill {
+	color: red;
+}
+
+.bi-pen-fill {
+	color: green;
+}
+
+button {
+	border: none;
+	background-color: transparent;
+}
