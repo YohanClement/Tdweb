@@ -15,7 +15,7 @@
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-dark">
-		<a class="navbar-brand" href="#">CRUD</a>
+		<a class="navbar-brand" href="#"><span>YohanCorp</span></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarNav" aria-controls="navbarNav"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -29,55 +29,58 @@
 					href="AppEmp.html">Ajouter un employé</a></li>
 			</ul>
 		</div>
-		${message}
+		<span>${message}</span>
 		<a href="logout" class="btn btn-primary">Logout</a>
 
 	</nav>
-
-	<table class="table table-bordered">
-		<thead class="thead thead-dark">
-			<tr>
-				<th>ID</th>
-				<th>First Name</th>
-				<th>Last Name</th>
-				<th>Start Date</th>
-				<th>Role Name</th>
-				<th>Email</th>
-				<th colspan="2">Action</th>
-			</tr>
-		</thead>
-		<tbody>
-
-			<c:forEach items="${users}" var="u">
-
+	<div class="container">
+	<h1>Gestion des employées</h1>
+		<table class="table table-bordered">
+			<thead class="thead thead-dark">
 				<tr>
-					<td>${u.iduser}</td>
-					<td>${u.firstname}</td>
-					<td>${u.lastname}</td>
-					<td>${u.creationDate}</td>
-					<td>${u.email}</td>
-					<td>${u.rolename}</td>
-
-					<td><form action="change" method="get">
-							<button type="submit" class="btn btn-primary" name="id"
-								value="${u.iduser}">
-								<i class="bi bi-pen-fill"></i>
-							</button>
-						</form></td>
-
-					<td>
-
-						<form action="delete" method="get">
-							<button class="btn btn-primary" type="submit" name="id"
-								value="${u.iduser}" onclick="return confirm('Are you sure you want to delete this item?');" >
-								<i class="bi bi-x-square-fill"></i>
-							</button>
-						</form>
-					</td>
+					<th>ID</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Start Date</th>
+					<th>Role Name</th>
+					<th>Email</th>
+					<th colspan="2">Action</th>
 				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+
+				<c:forEach items="${users}" var="u">
+
+					<tr>
+						<td>${u.iduser}</td>
+						<td>${u.firstname}</td>
+						<td>${u.lastname}</td>
+						<td>${u.creationDate}</td>
+						<td>${u.email}</td>
+						<td>${u.rolename}</td>
+
+						<td><form action="change" method="get">
+								<button type="submit" class="btn btn-primary" name="id"
+									value="${u.iduser}">
+									<i class="bi bi-pen-fill"></i>
+								</button>
+							</form></td>
+
+						<td>
+
+							<form action="delete" method="get">
+								<button class="btn btn-primary" type="submit" name="id"
+									value="${u.iduser}"
+									onclick="return confirm('Are you sure you want to delete this item?');">
+									<i class="bi bi-x-square-fill"></i>
+								</button>
+							</form>
+						</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
 
 
 </body>
