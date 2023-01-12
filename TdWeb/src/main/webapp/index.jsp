@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page language="java" contentType="text/html; UTF-8"	pageEncoding="UTF-8" session="false"%>
+<%@ page language="java" contentType="text/html; UTF-8"
+	pageEncoding="UTF-8" session="false"%>
 
 <!DOCTYPE html>
 
@@ -47,7 +48,10 @@
 							connecter</button>
 					</div>
 				</form>
-
+				<c:if
+					test="${user == null && message=='Incorrect login. Please check your email ans password.' }">
+					<h1 id="error">${message}</h1>
+				</c:if>
 			</div>
 		</div>
 

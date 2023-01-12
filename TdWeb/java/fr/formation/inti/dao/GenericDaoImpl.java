@@ -33,10 +33,12 @@ public class GenericDaoImpl<T, ID extends Serializable> implements GenericDao<T,
 	}
 
 	public void commit(boolean ok) {
-		if (ok)
+		if (ok) {
 			session.getTransaction().commit();
-		else
+		} else {
 			session.getTransaction().rollback();
+		}
+		session.close();
 	}
 
 	public T findById(ID id) {

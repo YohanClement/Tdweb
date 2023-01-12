@@ -26,14 +26,14 @@
 				<li class="nav-item active"><a class="nav-link text-white"
 					href="tab">Liste des employés</a></li>
 				<li class="nav-item"><a class="nav-link text-white"
-					href="AppEmp.jsp">Ajouter un employé</a></li>
+					href="AppEmp.html">Ajouter un employé</a></li>
 			</ul>
 		</div>
 		<a href="logout" class="btn btn-primary">Logout</a>
 
 	</nav>
 	<h2 class="fw-normal mb-3 pb-3 text-center">Editer le profil de
-		l'employé ${user.lastname} ${user.firstname}</h2>
+		l'employé ${user.lastName} ${user.firstName}</h2>
 
 	<form action="change" method="post">
 
@@ -44,36 +44,24 @@
 		<div class="form-outline mb-4">
 			<label><b>Firstname</b></label> <input type="text"
 				class="form-control" placeholder="firstname" name="firstname"
-				value="${user.firstname}">
+				value="${user.firstName}">
 		</div>
 
 		<div class="form-outline mb-4">
 			<label for="lastname"><b>Lastname</b></label> <input type="text"
 				class="form-control form-control-lg" placeholder='lastname'
-				name="lastname" value="${user.lastname}">
+				name="lastname" value="${user.lastName}">
 		</div>
 
 		<div class="form-outline mb-4">
 			<label for="rolename"><b>Role Name</b></label> <input type="text"
 				class="form-control form-control-lg" placeholder="rolename"
-				name="rolename" value="${user.rolename}">
+				name="rolename" value="${user.title}">
 		</div>
 
 		<div>
-			<label for="start"><b>Start date:</b></label> <input type="date" value="${user.creationDate }"
+			<label for="start"><b>Start date:</b></label> <input type="date" value="${user.startDate }"
 				name="date" >
-		</div>
-
-		<div class="form-outline mb-4">
-			<label for="email"><b>Email</b></label> <input type="text"
-				class="form-control form-control-lg" placeholder="email"
-				name="email" value="${user.email}">
-		</div>
-
-		<div class="form-outline mb-4">
-			<label for="password"><b>Password</b></label> <input type="password"
-				class="form-control form-control-lg" placeholder="password"
-				name="password" value="${user.password}">
 		</div>
 
 		<div class="pt-1 mb-4">

@@ -10,23 +10,24 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.formation.inti.entity.Employee;
 import fr.formation.inti.service.EmployeeServiceImpl;
 import fr.formation.inti.service.employeeService;
 
 /**
- * Servlet implementation class addemployee
+ * Servlet implementation class ModificationController
  */
-@WebServlet("/addemp")
-public class Addemployee extends HttpServlet {
+@WebServlet("/changeE")
+public class ModificationControllerEmp extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private employeeService ud;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public Addemployee() {
+	public ModificationControllerEmp() {
 		super();
 		ud = new EmployeeServiceImpl();
 	}
@@ -37,8 +38,17 @@ public class Addemployee extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doPost(request, response);
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+			String iduser = request.getParameter("id");
+			Integer id = Integer.parseInt(iduser);
+			Employee user = ud.findById(id);
+			request.setAttribute("user", user);
+			request.setAttribute("id", user.getEmpId());
+			request.getServletContext().getRequestDispatcher("/Update.jsp").forward(request, response);
+		}else {
+			request.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+		}
 	}
 
 	/**
@@ -47,30 +57,36 @@ public class Addemployee extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		String iduser = request.getParameter("id");
+		Integer id = Integer.parseInt(iduser);
 		
+		Employee user = ud.findById(id);
+
 		String firstname = request.getParameter("firstname");
 		String lastname = request.getParameter("lastname");
 		String rolename = request.getParameter("rolename");
 		String date = request.getParameter("date");
-		SimpleDateFormat startdate = new SimpleDateFormat("yyyy-MM-dd");
+
+		SimpleDateFormat availDate = new SimpleDateFormat("yyyy-MM-dd");
 		Date datecrea;
-		
-			Employee neo = new Employee();
 		try {
-			datecrea = startdate.parse(date);
-		
-			neo.setFirstName(firstname);
-			neo.setLastName(lastname);
-			neo.setTitle(rolename);
-			neo.setStartDate(datecrea);
+			datecrea = availDate.parse(date);
+			user.setStartDate(datecrea);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-			ud.save(neo);
-			request.getServletContext().getRequestDispatcher("/tab").forward(request, response);
 
+
+		user.setFirstName(firstname);
+		user.setFirstName(lastname);
+		user.setTitle(rolename);
+		
+
+
+		ud.save(user);
+
+		request.getServletContext().getRequestDispatcher("/tab").forward(request, response);
 
 	}
 

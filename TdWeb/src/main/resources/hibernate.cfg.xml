@@ -15,5 +15,6 @@
 		<property name="hibernate.validator.apply_to_ddl">false</property>
 		<property name="hibernate.current_session_context_class">thread</property>
 		<mapping class="fr.formation.inti.entity.User" />
+		<mapping class="fr.formation.inti.entity.Employee" />
 	</session-factory>
 </hibernate-configuration>

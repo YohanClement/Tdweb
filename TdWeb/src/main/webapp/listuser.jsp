@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -42,13 +42,20 @@
 				<li class="nav-item"><a class="nav-link text-white"
 					href="AppEmp.html">Ajouter un.e employé.e</a></li>
 			</ul>
+			<div class="dropdown">
+				<span>Mouse over me</span>
+				<div class="dropdown-content">
+					<a href="AjoutUSer.html">Ajouter un user</a> 
+					<a href="tabu">Liste des Users</a>
+				</div>
+			</div>
 		</div>
 		${message} <a href="logout" class="btn btn-primary">Logout</a>
 
 	</nav>
 	<h1>Gestion des employées</h1>
 	<div class="container">
-		
+
 		<table class="table table-bordered" data-toggle="table"
 			data-pagination="true" data-search="true" data-page-size="5"
 			data-page-list="[5, 10, 25, 50, All]">
@@ -58,38 +65,40 @@
 					<th>First Name</th>
 					<th>Last Name</th>
 					<th>Start Date</th>
-					<th>Title</th>
+					<th>Email</th>
+					<th>Role Name</th>
 					<th>Action</th>
 				</tr>
 			</thead>
 			<tbody>
 
-				<c:forEach items="${emp}" var="e">
+				<c:forEach items="${users}" var="u">
 
 					<tr>
-						<td>${e.empId}</td>
-						<td>${e.firstName}</td>
-						<td>${e.lastName}</td>
-						<td >${e.startDate}</td>
-						
-						<td>${e.title}</td>
+						<td>${u.iduser}</td>
+						<td>${u.firstname}</td>
+						<td>${u.lastname}</td>
+						<td><fmt:parseDate value="${u.creationDate}"
+								pattern="dd/mm/yyyy" /></td>
+						<td>${u.email}</td>
+						<td>${u.rolename}</td>
 
 						<td>
 							<div class="d-inline">
-								<form action="changeE" method="get">
+								<form action="change" method="get">
 									<button type="submit" class="btn btn-outline-primary" name="id"
-										value="${e.empId}">
+										value="${u.iduser}">
 										<i class="bi bi-pen-fill"></i>
 									</button>
 								</form>
-								<form action="deleteE" method="get">
+								<form action="delete" method="get">
 									<button class="btn btn-outline-primary" type="submit" name="id"
-										value="${e.empId}"
-										onclick="return confirm('confirmez la suppression');">
+										value="${u.iduser}"
+										onclick="return confirm('Are you sure you want to delete this item?');">
 										<i class="bi bi-x-square-fill"></i>
 									</button>
 								</form>
-							</div> 
+							</div>
 						</td>
 					</tr>
 				</c:forEach>
