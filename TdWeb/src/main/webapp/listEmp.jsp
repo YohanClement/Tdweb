@@ -29,20 +29,21 @@
 					href="AppEmp.html">Ajouter un employé</a></li>
 			</ul>
 		</div>
+		${message}
 		<a href="logout" class="btn btn-primary">Logout</a>
 
 	</nav>
 
-	<table class="table table-bordered table-striped">
+	<table class="table table-bordered">
 		<thead class="thead thead-dark">
 			<tr>
-				<td>ID</td>
-				<td>First Name</td>
-				<td>Last Name</td>
-				<td>Start Date</td>
-				<td>Role Name</td>
-				<td>Email</td>
-				<td colspan="2">Action</td>
+				<th>ID</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Start Date</th>
+				<th>Role Name</th>
+				<th>Email</th>
+				<th colspan="2">Action</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -63,12 +64,16 @@
 								<i class="bi bi-pen-fill"></i>
 							</button>
 						</form></td>
-					<td><form action="delete" method="get">
+
+					<td>
+
+						<form action="delete" method="get">
 							<button class="btn btn-primary" type="submit" name="id"
-								value="${u.iduser}">
+								value="${u.iduser}" onclick="return confirm('Are you sure you want to delete this item?');" >
 								<i class="bi bi-x-square-fill"></i>
 							</button>
-						</form></td>
+						</form>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>

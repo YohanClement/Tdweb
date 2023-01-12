@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.formation.inti.entity.User;
 import fr.formation.inti.service.UserService;
@@ -35,11 +36,17 @@ public class TabController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		List<User> users = ud.findAll();
-		request.setAttribute("users", users);
-		request.getServletContext().getRequestDispatcher("/listEmp.jsp").forward(request, response);
-		return;
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+			List<User> users = ud.findAll();
+
+			request.setAttribute("users", users);
+			request.getServletContext().getRequestDispatcher("/listEmp.jsp").forward(request, response);
+			return;
+		} else {
+			request.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+		}
+
 	}
 
 	/**

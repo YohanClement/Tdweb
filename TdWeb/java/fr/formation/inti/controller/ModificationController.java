@@ -1,12 +1,16 @@
 package fr.formation.inti.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.formation.inti.entity.User;
 import fr.formation.inti.service.UserService;
@@ -34,14 +38,17 @@ public class ModificationController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String iduser = request.getParameter("id");
-		Integer id = Integer.parseInt(iduser);
-		User user = ud.findById(id);
-		
-		request.setAttribute("id", id);
-		request.setAttribute("user", user);
-
-		request.getServletContext().getRequestDispatcher("/Update.jsp").forward(request, response);
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+			String iduser = request.getParameter("id");
+			Integer id = Integer.parseInt(iduser);
+			User user = ud.findById(id);
+			request.setAttribute("user", user);
+			request.setAttribute("id", user.getIduser());
+			request.getServletContext().getRequestDispatcher("/Update.jsp").forward(request, response);
+		}else {
+			request.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+		}
 	}
 
 	/**
@@ -59,14 +66,26 @@ public class ModificationController extends HttpServlet {
 		String firstname = request.getParameter("firstname");
 		String lastname = request.getParameter("lastname");
 		String rolename = request.getParameter("rolename");
+		String date = request.getParameter("date");
+
+		SimpleDateFormat availDate = new SimpleDateFormat("yyyy-MM-dd");
+		Date datecrea;
+		try {
+			datecrea = availDate.parse(date);
+			user.setCreationDate(datecrea);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		user.setEmail(email);
 		user.setFirstname(firstname);
 		user.setLastname(lastname);
 		user.setRolename(rolename);
 		user.setPassword(password);
+
 		ud.save(user);
-		
+
 		request.getServletContext().getRequestDispatcher("/tab").forward(request, response);
 
 	}

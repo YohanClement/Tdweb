@@ -16,7 +16,6 @@
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-dark">
-		<a class="navbar-brand" href="#">CRUD</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarNav" aria-controls="navbarNav"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -60,6 +59,11 @@
 				name="rolename" value="${user.rolename}">
 		</div>
 
+		<div>
+			<label for="start"><b>Start date:</b></label> <input type="date" value="${user.creationDate }"
+				name="date" >
+		</div>
+
 		<div class="form-outline mb-4">
 			<label for="email"><b>Email</b></label> <input type="text"
 				class="form-control form-control-lg" placeholder="email"
@@ -73,7 +77,8 @@
 		</div>
 
 		<div class="pt-1 mb-4">
-			<button class="btn btn-primary mb-4" type="submit">Enregistrer</button>
+			<button class="btn btn-primary mb-4" type="submit" name="id"
+				value="${id}">Enregistrer</button>
 		</div>
 	</form>
 </body>

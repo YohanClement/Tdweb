@@ -35,12 +35,12 @@ public class LoginController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
+		HttpSession session = request.getSession();
 		if (session == null) {
 			response.sendRedirect(request.getContextPath());
 
 		} else {
-			request.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+			request.getServletContext().getRequestDispatcher("/tab").forward(request, response);
 		}
 	}
 
@@ -56,16 +56,16 @@ public class LoginController extends HttpServlet {
 		User user = ud.findbylog(email, password);
 
 		if (user == null) {
-			request.getSession().setAttribute("message", "Incorrect password. Please try again.");
+			request.getSession().setAttribute("message", "Incorrect login. Please check your email ans password.");
 			response.sendRedirect(request.getContextPath());
 			return;
 		} else {
 
 			HttpSession mysession = request.getSession();
 			mysession.setAttribute("email", email);
-			mysession.setAttribute("message",
+			request.setAttribute("message",
 					"<h1> Bonjour " + user.getFirstname() + " " + user.getLastname() + "<h1>");
-			request.getServletContext().getRequestDispatcher("/Loged.jsp").forward(request, response);
+			request.getServletContext().getRequestDispatcher("/tab").forward(request, response);
 			return;
 		}
 	}
