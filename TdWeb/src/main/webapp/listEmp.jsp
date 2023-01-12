@@ -1,15 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>list employee</title>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+<script
+	src="https://unpkg.com/bootstrap-table@1.21.2/dist/bootstrap-table.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+<link rel="stylesheet"
+	href="https://unpkg.com/bootstrap-table@1.21.2/dist/bootstrap-table.min.css">
+
+
 <link rel="stylesheet" href="Styles.css">
 
 </head>
@@ -26,25 +40,27 @@
 				<li class="nav-item active"><a class="nav-link text-white"
 					href="tab">Liste des employés</a></li>
 				<li class="nav-item"><a class="nav-link text-white"
-					href="AppEmp.html">Ajouter un employé</a></li>
+					href="AppEmp.html">Ajouter un.e employé.e</a></li>
 			</ul>
 		</div>
-		<span>${message}</span>
-		<a href="logout" class="btn btn-primary">Logout</a>
+		${message} <a href="logout" class="btn btn-primary">Logout</a>
 
 	</nav>
-	<div class="container">
 	<h1>Gestion des employées</h1>
-		<table class="table table-bordered">
-			<thead class="thead thead-dark">
+	<div class="container">
+		
+		<table class="table table-bordered" data-toggle="table"
+			data-pagination="true" data-search="true" data-page-size="5"
+			data-page-list="[5, 10, 25, 50, All]">
+			<thead class="th">
 				<tr>
 					<th>ID</th>
 					<th>First Name</th>
 					<th>Last Name</th>
 					<th>Start Date</th>
-					<th>Role Name</th>
 					<th>Email</th>
-					<th colspan="2">Action</th>
+					<th>Role Name</th>
+					<th>Action</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -55,33 +71,31 @@
 						<td>${u.iduser}</td>
 						<td>${u.firstname}</td>
 						<td>${u.lastname}</td>
-						<td>${u.creationDate}</td>
+						<td ><fmt:parseDate  value="${u.creationDate}" pattern="dd/mm/yyyy" /></td>
 						<td>${u.email}</td>
 						<td>${u.rolename}</td>
 
-						<td><form action="change" method="get">
-								<button type="submit" class="btn btn-primary" name="id"
-									value="${u.iduser}">
-									<i class="bi bi-pen-fill"></i>
-								</button>
-							</form></td>
-
 						<td>
-
-							<form action="delete" method="get">
-								<button class="btn btn-primary" type="submit" name="id"
-									value="${u.iduser}"
-									onclick="return confirm('Are you sure you want to delete this item?');">
-									<i class="bi bi-x-square-fill"></i>
-								</button>
-							</form>
+							<div class="d-inline">
+								<form action="change" method="get">
+									<button type="submit" class="btn btn-outline-primary" name="id"
+										value="${u.iduser}">
+										<i class="bi bi-pen-fill"></i>
+									</button>
+								</form>
+								<form action="delete" method="get">
+									<button class="btn btn-outline-primary" type="submit" name="id"
+										value="${u.iduser}"
+										onclick="return confirm('Are you sure you want to delete this item?');">
+										<i class="bi bi-x-square-fill"></i>
+									</button>
+								</form>
+							</div> 
 						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 	</div>
-
-
 </body>
 </html>

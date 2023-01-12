@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="Styles.css">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+	<nav class="navbar navbar-expand-lg navbar-light bg-dark">
 		<a class="navbar-brand" href="#">CRUD</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarNav" aria-controls="navbarNav"
@@ -26,41 +26,47 @@
 		<a href="logout" class="btn btn-primary">Logout</a>
 
 	</nav>
-	<form action="add" method="post">
+	<div class="card">
+		<form action="add" method="post">
 
-		<h2 class="fw-normal mb-3 pb-3 text-center"
-			style="letter-spacing: 1px;">Sign into your account</h2>
+			<h2 class="fw-normal text-center"
+				style="letter-spacing: 1px;">Ajouter un.e nouvel.le employé.e</h2>
 
-		<div class="form-outline mb-4">
-			<label for="firstname"><b>Firstname</b></label> <input type="text"
-				class="form-control form-control-lg" name="firstname" required>
-		</div>
+			<div class="form-outline mb-4">
+				<label for="firstname"><b>Firstname</b></label> <input type="text"
+					class="form-control form-control-lg" name="firstname" required>
+			</div>
 
-		<div class="form-outline mb-4">
-			<label for="lastname"><b>Lastname</b></label> <input type="text"
-				class="form-control form-control-lg" name="lastname" required>
-		</div>
+			<div class="form-outline mb-4">
+				<label for="lastname"><b>Lastname</b></label> <input type="text"
+					class="form-control form-control-lg" name="lastname" required>
+			</div>
+			<div>
+				<label for="start"><b>Start date:</b></label> <input type="date"
+					name="date">
+			</div>
 
-		<div class="form-outline mb-4">
-			<label for="rolename"><b>Role Name</b></label> <input type="text"
-				class="form-control form-control-lg" name="rolename" required>
-		</div>
+			<div class="form-outline mb-4">
+				<label for="rolename"><b>Role Name</b></label> <input type="text"
+					class="form-control form-control-lg" name="rolename" required>
+			</div>
 
-		<div class="form-outline mb-4">
-			<label for="email"><b>Email</b></label> <input type="text"
-				class="form-control form-control-lg" placeholder="Enter email"
-				name="email" required>
-		</div>
+			<div class="form-outline mb-4">
+				<label for="email"><b>Email</b></label> <input type="text"
+					class="form-control form-control-lg" placeholder="Enter email"
+					name="email" required>
+			</div>
 
-		<div class="form-outline mb-4">
-			<label for="password"><b>Password</b></label> <input type="password"
-				class="form-control form-control-lg" placeholder="Enter Password"
-				name="password" required>
-		</div>
+			<div class="form-outline mb-4">
+				<label for="password"><b>Password</b></label> <input type="password"
+					class="form-control form-control-lg" placeholder="Enter Password"
+					name="password" required>
+			</div>
 
-		<div class="pt-1 mb-4">
-			<button class="btn btn-primary mb-4" type="submit">Ajouter</button>
-		</div>
-	</form>
+			<div class="pt-1 mb-4">
+				<button class="btn btn-primary mb-4" type="submit">Ajouter</button>
+			</div>
+		</form>
+	</div>
 </body>
 </html>

@@ -63,6 +63,7 @@ public class LoginController extends HttpServlet {
 
 			HttpSession mysession = request.getSession();
 			mysession.setAttribute("email", email);
+			mysession.setMaxInactiveInterval(30*60);
 			request.setAttribute("message",
 					"<h1> Bonjour " + user.getFirstname() + " " + user.getLastname() + "<h1>");
 			request.getServletContext().getRequestDispatcher("/tab").forward(request, response);
