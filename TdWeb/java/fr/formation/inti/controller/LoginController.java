@@ -56,18 +56,21 @@ public class LoginController extends HttpServlet {
 		User user = ud.findbylog(email, password);
 
 		if (user == null) {
-			request.getSession().setAttribute("message", "Incorrect login. Please check your email ans password.");
+			request.setAttribute("message", "Incorrect login. Please check your email ans password.");
 			response.sendRedirect(request.getContextPath());
 			return;
+		} else if (user.getRolename().equals("admin")) {
+			request.getServletContext().getRequestDispatcher("/tabu").forward(request, response);
 		} else {
-
 			HttpSession mysession = request.getSession(true);
 			mysession.setAttribute("email", email);
-			mysession.setMaxInactiveInterval(30*60);
-			request.setAttribute("message",
-					"<h1> Bonjour " + user.getFirstname() + " " + user.getLastname() + "<h1>");
+			mysession.setMaxInactiveInterval(30 * 60);
+			request.getSession().setAttribute("message", "<h1> Bonjour " + user.getFirstname() + " " + user.getLastname() + "<h1>");
+			request.getSession().setAttribute("me", user);
 			request.getServletContext().getRequestDispatcher("/tab").forward(request, response);
 			return;
 		}
+
 	}
+
 }
