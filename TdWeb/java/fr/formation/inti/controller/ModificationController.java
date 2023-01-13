@@ -45,9 +45,9 @@ public class ModificationController extends HttpServlet {
 			User user = ud.findById(id);
 			request.setAttribute("user", user);
 			request.setAttribute("id", user.getIduser());
-			request.getServletContext().getRequestDispatcher("/UpdateUser.jsp").forward(request, response);
+			request.getServletContext().getRequestDispatcher("/WEB-INF/UpdateUser.jsp").forward(request, response);
 		} else {
-			request.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+			request.getServletContext().getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
 		}
 	}
 
@@ -89,7 +89,7 @@ public class ModificationController extends HttpServlet {
 
 			ud.save(user);
 
-			request.getServletContext().getRequestDispatcher("/tab").forward(request, response);
+			request.getServletContext().getRequestDispatcher("/tabu").forward(request, response);
 
 		} else {
 			response.sendRedirect(request.getContextPath());

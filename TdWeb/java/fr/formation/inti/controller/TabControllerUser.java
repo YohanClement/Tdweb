@@ -41,7 +41,7 @@ public class TabControllerUser extends HttpServlet {
 			List<User> user = ed.findAll();
 
 			request.setAttribute("user", user);
-			request.getServletContext().getRequestDispatcher("/listuser.jsp").forward(request, response);
+			request.getServletContext().getRequestDispatcher("/WEB-INF/VIEW/listuser.jsp").forward(request, response);
 			return;
 		} else {
 			response.sendRedirect(request.getContextPath());

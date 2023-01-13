@@ -38,8 +38,14 @@ public class AddUser extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doPost(request, response);
+		HttpSession session = request.getSession(false);
+
+		if (session != null) {
+			request.getServletContext().getRequestDispatcher("/WEB-INF/VIEW/AjoutUser.html").forward(request, response);
+
+		} else {
+			response.sendRedirect(request.getContextPath());
+		}
 	}
 
 	/**
@@ -75,13 +81,12 @@ public class AddUser extends HttpServlet {
 				}
 
 				ud.save(neo);
-				request.getServletContext().getRequestDispatcher("/tab").forward(request, response);
+				request.getServletContext().getRequestDispatcher("/tabu").forward(request, response);
 
 			} else {
 				String message = "Utilisateur déja connu";
-				HttpSession mysession = request.getSession();
-				mysession.setAttribute("dejaco", message);
-				request.getServletContext().getRequestDispatcher("/").forward(request, response);
+				request.setAttribute("message", message);
+				request.getServletContext().getRequestDispatcher("/index").forward(request, response);
 			}
 
 		} else {

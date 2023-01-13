@@ -51,35 +51,23 @@ public class LoginController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		User user = ud.findbylog(email, password);
 
-		HttpSession session = request.getSession(false);
-		if (session != null) {
-			String email = request.getParameter("email");
-			String password = request.getParameter("password");
-			User user = ud.findbylog(email, password);
-
-			if (user == null) {
-				request.setAttribute("message", "Incorrect login. Please check your email ans password.");
-				response.sendRedirect(request.getContextPath());
-				return;
-			} else if ("admin".equals(user.getRolename())) {
-				HttpSession mysession = request.getSession(true);
-
-				request.getSession().setAttribute("message",
-						"<h1> Bonjour " + user.getFirstname() + " " + user.getLastname() + "<h1>");
-				mysession.setAttribute("me", user);
-				request.getServletContext().getRequestDispatcher("/tabu").forward(request, response);
-			} else {
-				HttpSession mysession = request.getSession(true);
-				mysession.setMaxInactiveInterval(30 * 60);
-				request.getSession().setAttribute("message",
-						"<h1> Bonjour " + user.getFirstname() + " " + user.getLastname() + "<h1>");
-				request.getSession().setAttribute("me", user);
-				request.getServletContext().getRequestDispatcher("/tab").forward(request, response);
-				return;
-			}
-		} else {
+		if (user == null) {
+			request.setAttribute("message", "Incorrect login. Please check your email ans password.");
 			response.sendRedirect(request.getContextPath());
+			return;
+
+		} else {
+			HttpSession mysession = request.getSession();
+			mysession.setMaxInactiveInterval(30 * 60); // 30 min inactif
+			mysession.setAttribute("message",
+					"<h1> Bonjour " + user.getFirstname() + " " + user.getLastname() + "<h1>");
+			mysession.setAttribute("me", user);
+			request.getServletContext().getRequestDispatcher("/tab").forward(request, response);
+			return;
 		}
 
 	}

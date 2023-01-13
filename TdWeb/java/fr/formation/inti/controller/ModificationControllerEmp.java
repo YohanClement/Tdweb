@@ -45,7 +45,7 @@ public class ModificationControllerEmp extends HttpServlet {
 			Employee user = ud.findById(id);
 			request.setAttribute("user", user);
 			request.setAttribute("id", user.getEmpId());
-			request.getServletContext().getRequestDispatcher("/Update.jsp").forward(request, response);
+			request.getServletContext().getRequestDispatcher("/WEB-INF/VIEW/Update.jsp").forward(request, response);
 		} else {
 			response.sendRedirect(request.getContextPath());
 		}

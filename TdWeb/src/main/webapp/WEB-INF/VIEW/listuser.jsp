@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8" session="false"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -29,7 +29,7 @@
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-dark">
-		<span>YohanCorp</span>
+		<span class="text-white">YohanCorp</span>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarNav" aria-controls="navbarNav"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -40,13 +40,13 @@
 				<li class="nav-item active"><a class="nav-link text-white"
 					href="tab">Liste des employés</a></li>
 				<li class="nav-item"><a class="nav-link text-white"
-					href="AppEmp.html">Ajouter un.e employé.e</a></li>
+					href="/addemp">Ajouter un.e employé.e</a></li>
 
 				<li class="nav-item"><a href="tabu" class="nav-link text-white">Liste
 						des Users</a></li>
 			</ul>
 		</div>
-		<span>${message}</span> <a href="logout" class="btn btn-primary">Logout</a>
+		<span class="text-white">${message}</span> <a href="logout" class="btn btn-primary">Logout</a>
 
 	</nav>
 	<h1>Gestion des Utilisateurs</h1>

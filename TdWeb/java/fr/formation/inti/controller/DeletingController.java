@@ -39,7 +39,7 @@ public class DeletingController extends HttpServlet {
 		if (session != null) {
 			String id = request.getParameter("id");
 			ud.deleteById(Integer.parseInt(id));
-			request.getServletContext().getRequestDispatcher("/tab").forward(request, response);
+			request.getServletContext().getRequestDispatcher("/tabu").forward(request, response);
 		} else {
 			response.sendRedirect(request.getContextPath());
 		}

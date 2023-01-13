@@ -38,8 +38,14 @@ public class Addemployee extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doPost(request, response);
+		HttpSession session = request.getSession(false);
+
+		if (session != null) {
+			request.getServletContext().getRequestDispatcher("/WEB-INF/VIEW/AppEmp.html").forward(request, response);
+
+		} else {
+			response.sendRedirect(request.getContextPath());
+		}
 	}
 
 	/**
