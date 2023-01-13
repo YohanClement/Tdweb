@@ -48,7 +48,7 @@
 		<span class="text-white">${message}</span> <a href="logout" class="btn btn-primary">Logout</a>
 
 	</nav>
-	<h1>Gestion des Utilisateurs</h1>
+	<h1>Gestion des Utilisateurs ${message}</h1>
 	<div class="container">
 
 		<table class="table table-bordered" data-toggle="table"
@@ -61,7 +61,7 @@
 					<th>Last Name</th>
 					<th>Start Date</th>
 					<th>Email</th>
-					<th>Role Name</th>
+					<th>Job Title</th>
 					<th>Action</th>
 
 				</tr>

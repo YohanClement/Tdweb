@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	session="false" pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
@@ -41,7 +41,7 @@
 					href="tab">Liste des employés</a></li>
 				<li class="nav-item"><a class="nav-link text-white"
 					href="addemp">Ajouter un.e employé.e</a></li>
-				<c:if test="${me.rolename == 'admin'}">
+				<c:if test="${me.droit == 'admin'}">
 					<li class="nav-item"><a href="tabu"
 						class="nav-link text-white">Liste des Users</a></li>
 				</c:if>
@@ -56,9 +56,6 @@
 
 
 	</nav>
-	<c:if test="${me.rolename == 'admin'}">
-		${me.firstname} ${me.lastname}
-	</c:if>
 
 	<h1 class="text-center my-5">Gestion des employées</h1>
 	<div class="container">
@@ -73,7 +70,7 @@
 					<th>Last Name</th>
 					<th>Start Date</th>
 					<th>Title</th>
-					<c:if test="${me.rolename == 'admin'}">
+					<c:if test="${me.droit == 'admin'}">
 						<th>Action</th>
 					</c:if>
 				</tr>
@@ -88,7 +85,7 @@
 						<td>${e.lastName}</td>
 						<td>${e.startDate}</td>
 						<td>${e.title}</td>
-						<c:if test="${me.rolename == 'admin'}">
+						<c:if test="${me.droit == 'admin'}">
 							<td>
 								<div class="d-inline">
 									<form action="changeE" method="get">

@@ -46,8 +46,7 @@ public class AddUser extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
-		if (session != null) {
+	
 			String email = request.getParameter("email");
 			String password = request.getParameter("password");
 			String firstname = request.getParameter("firstname");
@@ -76,8 +75,5 @@ public class AddUser extends HttpServlet {
 				request.getServletContext().getRequestDispatcher("/index").forward(request, response);
 			}
 
-		} else {
-			response.sendRedirect(request.getContextPath());
-		}
 	}
 }

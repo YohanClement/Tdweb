@@ -19,6 +19,7 @@ public class User {
 	private String lastname;
 	private String rolename;
 	private Date creationDate;
+	private String droit;
 	
 	public User() {
 	}
@@ -86,6 +87,14 @@ public class User {
 
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
+	}
+	@Column(name = "droit")
+	public String getDroit() {
+		return droit;
+	}
+
+	public void setDroit(String droit) {
+		this.droit = droit;
 	}
 
 	@Override

@@ -56,14 +56,14 @@ public class LoginController extends HttpServlet {
 		User user = ud.findbylog(email, password);
 
 		if (user == null) {
-			request.setAttribute("message", "Incorrect login. Please check your email ans password.");
+			request.setAttribute("Nope", "Incorrect login. Please check your email ans password.");
 			response.sendRedirect(request.getContextPath());
 			return;
 
 		} else {
 			HttpSession mysession = request.getSession();
 			mysession.setMaxInactiveInterval(30 * 60); // 30 min inactif
-			mysession.setAttribute("message",
+			request.getSession().setAttribute("message",
 					"<h1> Bonjour " + user.getFirstname() + " " + user.getLastname() + "<h1>");
 			mysession.setAttribute("me", user);
 			request.getServletContext().getRequestDispatcher("/tab").forward(request, response);
