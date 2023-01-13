@@ -44,9 +44,9 @@ public class TabController extends HttpServlet {
 			request.getServletContext().getRequestDispatcher("/listEmp.jsp").forward(request, response);
 			return;
 		} else {
-			request.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-		}
+			response.sendRedirect(request.getContextPath());
 
+		}
 	}
 
 	/**

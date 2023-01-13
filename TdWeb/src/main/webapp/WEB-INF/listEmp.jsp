@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -41,6 +41,8 @@
 					href="tab">Liste des employés</a></li>
 				<li class="nav-item"><a class="nav-link text-white"
 					href="AppEmp.html">Ajouter un.e employé.e</a></li>
+				<li class="nav-item"><a href="tabu" class="nav-link text-white">Liste
+						des Users</a></li>
 			</ul>
 		</div>
 		${message} <a href="logout" class="btn btn-primary">Logout</a>
@@ -48,7 +50,7 @@
 	</nav>
 	<h1>Gestion des employées</h1>
 	<div class="container">
-		
+
 		<table class="table table-bordered" data-toggle="table"
 			data-pagination="true" data-search="true" data-page-size="5"
 			data-page-list="[5, 10, 25, 50, All]">
@@ -59,7 +61,9 @@
 					<th>Last Name</th>
 					<th>Start Date</th>
 					<th>Title</th>
-					<th>Action</th>
+					<c:if test="${me.rolename} == admin">
+						<th>Action</th>
+					</c:if>
 				</tr>
 			</thead>
 			<tbody>
@@ -70,27 +74,27 @@
 						<td>${e.empId}</td>
 						<td>${e.firstName}</td>
 						<td>${e.lastName}</td>
-						<td >${e.startDate}</td>
-						
+						<td>${e.startDate}</td>
 						<td>${e.title}</td>
-
-						<td>
-							<div class="d-inline">
-								<form action="changeE" method="get">
-									<button type="submit" class="btn btn-outline-primary" name="id"
-										value="${e.empId}">
-										<i class="bi bi-pen-fill"></i>
-									</button>
-								</form>
-								<form action="deleteE" method="get">
-									<button class="btn btn-outline-primary" type="submit" name="id"
-										value="${e.empId}"
-										onclick="return confirm('confirmez la suppression');">
-										<i class="bi bi-x-square-fill"></i>
-									</button>
-								</form>
-							</div> 
-						</td>
+						<c:if test="${me.rolename} == admin">
+							<td>
+								<div class="d-inline">
+									<form action="changeE" method="get">
+										<button type="submit" class="btn btn-outline-primary"
+											name="id" value="${e.empId}">
+											<i class="bi bi-pen-fill"></i>
+										</button>
+									</form>
+									<form action="deleteE" method="get">
+										<button class="btn btn-outline-primary" type="submit"
+											name="id" value="${e.empId}"
+											onclick="return confirm('confirmez la suppression');">
+											<i class="bi bi-x-square-fill"></i>
+										</button>
+									</form>
+								</div>
+							</td>
+						</c:if>
 					</tr>
 				</c:forEach>
 			</tbody>

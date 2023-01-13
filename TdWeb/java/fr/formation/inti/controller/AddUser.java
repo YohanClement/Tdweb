@@ -48,44 +48,45 @@ public class AddUser extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+			String email = request.getParameter("email");
+			String password = request.getParameter("password");
+			String firstname = request.getParameter("firstname");
+			String lastname = request.getParameter("lastname");
+			String rolename = request.getParameter("rolename");
+			String date = request.getParameter("date");
+			SimpleDateFormat startdate = new SimpleDateFormat("yyyy-MM-dd");
+			Date datecrea;
+			User user = ud.findbylog(email, password);
+			if (user == null) {
+				User neo = new User();
+				try {
+					datecrea = startdate.parse(date);
+					neo.setEmail(email);
+					neo.setFirstname(firstname);
+					neo.setLastname(lastname);
+					neo.setPassword(password);
+					neo.setRolename(rolename);
+					neo.setCreationDate(datecrea);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
-		String firstname = request.getParameter("firstname");
-		String lastname = request.getParameter("lastname");
-		String rolename = request.getParameter("rolename");
-		String date = request.getParameter("date");
-		SimpleDateFormat startdate = new SimpleDateFormat("yyyy-MM-dd");
-		Date datecrea;
-		User user = ud.findbylog(email, password);
-		if (user == null) {
-			User neo = new User();
-		try {
-			datecrea = startdate.parse(date);
-			neo.setEmail(email);
-			neo.setFirstname(firstname);
-			neo.setLastname(lastname);
-			neo.setPassword(password);
-			neo.setRolename(rolename);
-			neo.setCreationDate(datecrea);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+				ud.save(neo);
+				request.getServletContext().getRequestDispatcher("/tab").forward(request, response);
 
-		
-			
-
-			ud.save(neo);
-			request.getServletContext().getRequestDispatcher("/tab").forward(request, response);
+			} else {
+				String message = "Utilisateur déja connu";
+				HttpSession mysession = request.getSession();
+				mysession.setAttribute("dejaco", message);
+				request.getServletContext().getRequestDispatcher("/").forward(request, response);
+			}
 
 		} else {
-			String message = "Utilisateur déja connu";
-			HttpSession mysession = request.getSession();
-			mysession.setAttribute("dejaco", message);
-			request.getServletContext().getRequestDispatcher("/").forward(request, response);
+			response.sendRedirect(request.getContextPath());
 		}
-
 	}
 
 }

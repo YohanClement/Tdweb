@@ -48,6 +48,9 @@
 							connecter</button>
 					</div>
 				</form>
+				
+				<a href="AjoutUser.html" class="nav-link text-white">Ajouter
+						un user</a>
 				<c:if
 					test="${user == null && message=='Incorrect login. Please check your email ans password.' }">
 					<h1 id="error">${message}</h1>

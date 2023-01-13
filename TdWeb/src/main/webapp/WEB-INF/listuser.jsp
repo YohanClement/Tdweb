@@ -41,19 +41,15 @@
 					href="tab">Liste des employés</a></li>
 				<li class="nav-item"><a class="nav-link text-white"
 					href="AppEmp.html">Ajouter un.e employé.e</a></li>
+
+				<li class="nav-item"><a href="tabu" class="nav-link text-white">Liste
+						des Users</a></li>
 			</ul>
-			<div class="dropdown">
-				<span>Mouse over me</span>
-				<div class="dropdown-content">
-					<a href="AjoutUSer.html">Ajouter un user</a> 
-					<a href="tabu">Liste des Users</a>
-				</div>
-			</div>
 		</div>
-		${message} <a href="logout" class="btn btn-primary">Logout</a>
+		<span>${message}</span> <a href="logout" class="btn btn-primary">Logout</a>
 
 	</nav>
-	<h1>Gestion des employées</h1>
+	<h1>Gestion des Utilisateurs</h1>
 	<div class="container">
 
 		<table class="table table-bordered" data-toggle="table"
@@ -68,21 +64,19 @@
 					<th>Email</th>
 					<th>Role Name</th>
 					<th>Action</th>
+
 				</tr>
 			</thead>
 			<tbody>
 
-				<c:forEach items="${users}" var="u">
-
+				<c:forEach items="${user}" var="u">
 					<tr>
 						<td>${u.iduser}</td>
 						<td>${u.firstname}</td>
 						<td>${u.lastname}</td>
-						<td><fmt:parseDate value="${u.creationDate}"
-								pattern="dd/mm/yyyy" /></td>
+						<td>${u.creationDate}</td>
 						<td>${u.email}</td>
 						<td>${u.rolename}</td>
-
 						<td>
 							<div class="d-inline">
 								<form action="change" method="get">

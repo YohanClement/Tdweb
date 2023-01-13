@@ -46,7 +46,7 @@ public class ModificationController extends HttpServlet {
 			request.setAttribute("user", user);
 			request.setAttribute("id", user.getIduser());
 			request.getServletContext().getRequestDispatcher("/UpdateUser.jsp").forward(request, response);
-		}else {
+		} else {
 			request.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 		}
 	}
@@ -57,37 +57,43 @@ public class ModificationController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String iduser = request.getParameter("id");
-		Integer id = Integer.parseInt(iduser);
-		User user = ud.findById(id);
+		HttpSession session = request.getSession(false);
 
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
-		String firstname = request.getParameter("firstname");
-		String lastname = request.getParameter("lastname");
-		String rolename = request.getParameter("rolename");
-		String date = request.getParameter("date");
+		if (session != null) {
+			String iduser = request.getParameter("id");
+			Integer id = Integer.parseInt(iduser);
+			User user = ud.findById(id);
 
-		SimpleDateFormat availDate = new SimpleDateFormat("yyyy-MM-dd");
-		Date datecrea;
-		try {
-			datecrea = availDate.parse(date);
-			user.setCreationDate(datecrea);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			String email = request.getParameter("email");
+			String password = request.getParameter("password");
+			String firstname = request.getParameter("firstname");
+			String lastname = request.getParameter("lastname");
+			String rolename = request.getParameter("rolename");
+			String date = request.getParameter("date");
+
+			SimpleDateFormat availDate = new SimpleDateFormat("yyyy-MM-dd");
+			Date datecrea;
+			try {
+				datecrea = availDate.parse(date);
+				user.setCreationDate(datecrea);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			user.setEmail(email);
+			user.setFirstname(firstname);
+			user.setLastname(lastname);
+			user.setRolename(rolename);
+			user.setPassword(password);
+
+			ud.save(user);
+
+			request.getServletContext().getRequestDispatcher("/tab").forward(request, response);
+
+		} else {
+			response.sendRedirect(request.getContextPath());
 		}
-
-		user.setEmail(email);
-		user.setFirstname(firstname);
-		user.setLastname(lastname);
-		user.setRolename(rolename);
-		user.setPassword(password);
-
-		ud.save(user);
-
-		request.getServletContext().getRequestDispatcher("/tab").forward(request, response);
-
 	}
 
 }

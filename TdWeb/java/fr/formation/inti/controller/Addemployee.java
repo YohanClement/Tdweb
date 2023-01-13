@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.formation.inti.entity.Employee;
 import fr.formation.inti.service.EmployeeServiceImpl;
@@ -48,30 +49,34 @@ public class Addemployee extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		
-		String firstname = request.getParameter("firstname");
-		String lastname = request.getParameter("lastname");
-		String rolename = request.getParameter("rolename");
-		String date = request.getParameter("date");
-		SimpleDateFormat startdate = new SimpleDateFormat("yyyy-MM-dd");
-		Date datecrea;
-		
+		HttpSession session = request.getSession(false);
+
+		if (session != null) {
+			String firstname = request.getParameter("firstname");
+			String lastname = request.getParameter("lastname");
+			String rolename = request.getParameter("rolename");
+			String date = request.getParameter("date");
+			SimpleDateFormat startdate = new SimpleDateFormat("yyyy-MM-dd");
+			Date datecrea;
+
 			Employee neo = new Employee();
-		try {
-			datecrea = startdate.parse(date);
-		
-			neo.setFirstName(firstname);
-			neo.setLastName(lastname);
-			neo.setTitle(rolename);
-			neo.setStartDate(datecrea);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			try {
+				datecrea = startdate.parse(date);
+
+				neo.setFirstName(firstname);
+				neo.setLastName(lastname);
+				neo.setTitle(rolename);
+				neo.setStartDate(datecrea);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			ud.save(neo);
 			request.getServletContext().getRequestDispatcher("/tab").forward(request, response);
 
-
+		} else {
+			response.sendRedirect(request.getContextPath());
+		}
 	}
 
 }

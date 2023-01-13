@@ -35,8 +35,9 @@ public class DeletingControllerEmp extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		String id = request.getParameter("id");
-		if (session != null && id != null) {
+	
+		if (session != null) {
+			String id = request.getParameter("id");
 			ud.deleteById(Integer.parseInt(id));
 			request.getServletContext().getRequestDispatcher("/tab").forward(request, response);
 		} else {

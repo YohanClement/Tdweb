@@ -46,8 +46,8 @@ public class ModificationControllerEmp extends HttpServlet {
 			request.setAttribute("user", user);
 			request.setAttribute("id", user.getEmpId());
 			request.getServletContext().getRequestDispatcher("/Update.jsp").forward(request, response);
-		}else {
-			request.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+		} else {
+			response.sendRedirect(request.getContextPath());
 		}
 	}
 
@@ -57,37 +57,40 @@ public class ModificationControllerEmp extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String iduser = request.getParameter("id");
-		Integer id = Integer.parseInt(iduser);
-		
-		Employee user = ud.findById(id);
 
-		String firstname = request.getParameter("firstname");
-		String lastname = request.getParameter("lastname");
-		String rolename = request.getParameter("rolename");
-		String date = request.getParameter("date");
+		HttpSession session = request.getSession(false);
 
-		SimpleDateFormat availDate = new SimpleDateFormat("yyyy-MM-dd");
-		Date datecrea;
-		try {
-			datecrea = availDate.parse(date);
-			user.setStartDate(datecrea);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (session != null) {
+			String iduser = request.getParameter("id");
+			Integer id = Integer.parseInt(iduser);
+
+			Employee user = ud.findById(id);
+
+			String firstname = request.getParameter("firstname");
+			String lastname = request.getParameter("lastname");
+			String rolename = request.getParameter("rolename");
+			String date = request.getParameter("date");
+
+			SimpleDateFormat availDate = new SimpleDateFormat("yyyy-MM-dd");
+			Date datecrea;
+			try {
+				datecrea = availDate.parse(date);
+				user.setStartDate(datecrea);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			user.setFirstName(firstname);
+			user.setFirstName(lastname);
+			user.setTitle(rolename);
+
+			ud.save(user);
+
+			request.getServletContext().getRequestDispatcher("/tab").forward(request, response);
+
+		} else {
+			response.sendRedirect(request.getContextPath());
 		}
-
-
-		user.setFirstName(firstname);
-		user.setFirstName(lastname);
-		user.setTitle(rolename);
-		
-
-
-		ud.save(user);
-
-		request.getServletContext().getRequestDispatcher("/tab").forward(request, response);
-
 	}
-
 }

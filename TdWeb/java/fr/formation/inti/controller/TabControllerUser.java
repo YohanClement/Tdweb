@@ -1,6 +1,7 @@
 package fr.formation.inti.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,23 +10,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.formation.inti.entity.User;
 import fr.formation.inti.service.UserService;
 import fr.formation.inti.service.UserServiceImpl;
 
 /**
- * Servlet implementation class UpdatingController
+ * Servlet implementation class Login
  */
-@WebServlet("/delete")
-public class DeletingController extends HttpServlet {
+@WebServlet("/tabu")
+public class TabControllerUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	UserService ud;
+	private UserService ed;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public DeletingController() {
+	public TabControllerUser() {
 		super();
-		ud = new UserServiceImpl();
+		ed = new UserServiceImpl();
 	}
 
 	/**
@@ -35,15 +37,15 @@ public class DeletingController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-
 		if (session != null) {
-			String id = request.getParameter("id");
-			ud.deleteById(Integer.parseInt(id));
-			request.getServletContext().getRequestDispatcher("/tab").forward(request, response);
+			List<User> user = ed.findAll();
+
+			request.setAttribute("user", user);
+			request.getServletContext().getRequestDispatcher("/listuser.jsp").forward(request, response);
+			return;
 		} else {
 			response.sendRedirect(request.getContextPath());
 		}
-
 	}
 
 	/**
@@ -53,6 +55,6 @@ public class DeletingController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);
-	}
 
+	}
 }

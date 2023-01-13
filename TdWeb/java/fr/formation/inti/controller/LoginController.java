@@ -35,12 +35,12 @@ public class LoginController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(false);
 		if (session == null) {
 			response.sendRedirect(request.getContextPath());
 
 		} else {
-			request.getServletContext().getRequestDispatcher("/tab").forward(request, response);
+			response.sendRedirect(request.getContextPath());
 		}
 	}
 
@@ -51,26 +51,36 @@ public class LoginController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
-		User user = ud.findbylog(email, password);
 
-		if (user == null) {
-			request.setAttribute("message", "Incorrect login. Please check your email ans password.");
-			response.sendRedirect(request.getContextPath());
-			return;
-		} else if (user.getRolename().equals("admin")) {
-			request.getServletContext().getRequestDispatcher("/tabu").forward(request, response);
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+			String email = request.getParameter("email");
+			String password = request.getParameter("password");
+			User user = ud.findbylog(email, password);
+
+			if (user == null) {
+				request.setAttribute("message", "Incorrect login. Please check your email ans password.");
+				response.sendRedirect(request.getContextPath());
+				return;
+			} else if ("admin".equals(user.getRolename())) {
+				HttpSession mysession = request.getSession(true);
+
+				request.getSession().setAttribute("message",
+						"<h1> Bonjour " + user.getFirstname() + " " + user.getLastname() + "<h1>");
+				mysession.setAttribute("me", user);
+				request.getServletContext().getRequestDispatcher("/tabu").forward(request, response);
+			} else {
+				HttpSession mysession = request.getSession(true);
+				mysession.setMaxInactiveInterval(30 * 60);
+				request.getSession().setAttribute("message",
+						"<h1> Bonjour " + user.getFirstname() + " " + user.getLastname() + "<h1>");
+				request.getSession().setAttribute("me", user);
+				request.getServletContext().getRequestDispatcher("/tab").forward(request, response);
+				return;
+			}
 		} else {
-			HttpSession mysession = request.getSession(true);
-			mysession.setAttribute("email", email);
-			mysession.setMaxInactiveInterval(30 * 60);
-			request.getSession().setAttribute("message", "<h1> Bonjour " + user.getFirstname() + " " + user.getLastname() + "<h1>");
-			request.getSession().setAttribute("me", user);
-			request.getServletContext().getRequestDispatcher("/tab").forward(request, response);
-			return;
+			response.sendRedirect(request.getContextPath());
 		}
 
 	}
-
 }
