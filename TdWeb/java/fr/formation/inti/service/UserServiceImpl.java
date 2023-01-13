@@ -5,7 +5,7 @@ import java.util.List;
 import fr.formation.inti.dao.UserDaoImpl;
 import fr.formation.inti.entity.User;
 
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 	UserDaoImpl dao;
 
 	public UserServiceImpl() {
@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService{
 	public Integer save(User c) {
 		dao.beginTransaction();
 		User cust = dao.save(c);
-		
+
 		dao.commit(true);
 		return cust.getIduser();
 	}
@@ -46,16 +46,13 @@ public class UserServiceImpl implements UserService{
 		dao.beginTransaction();
 		dao.delete(entiy);
 		dao.commit(true);
-		
+
 	}
 
 	public void deleteById(Integer id) {
 		dao.beginTransaction();
 		dao.deleteById(id);
 		dao.commit(true);
-		
 	}
-	
+
 }
-	
-	

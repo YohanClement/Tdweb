@@ -1,8 +1,6 @@
 package fr.formation.inti.controller;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.ServletException;
@@ -38,14 +36,8 @@ public class AddUser extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
 
-		if (session != null) {
-			request.getServletContext().getRequestDispatcher("/WEB-INF/VIEW/AjoutUser.html").forward(request, response);
-
-		} else {
-			response.sendRedirect(request.getContextPath());
-		}
+		request.getServletContext().getRequestDispatcher("/WEB-INF/VIEW/AjoutUser.html").forward(request, response);
 	}
 
 	/**
@@ -61,24 +53,19 @@ public class AddUser extends HttpServlet {
 			String firstname = request.getParameter("firstname");
 			String lastname = request.getParameter("lastname");
 			String rolename = request.getParameter("rolename");
-			String date = request.getParameter("date");
-			SimpleDateFormat startdate = new SimpleDateFormat("yyyy-MM-dd");
-			Date datecrea;
+
+			Date date = new Date(System.currentTimeMillis());
+			java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+
 			User user = ud.findbylog(email, password);
 			if (user == null) {
 				User neo = new User();
-				try {
-					datecrea = startdate.parse(date);
-					neo.setEmail(email);
-					neo.setFirstname(firstname);
-					neo.setLastname(lastname);
-					neo.setPassword(password);
-					neo.setRolename(rolename);
-					neo.setCreationDate(datecrea);
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				neo.setEmail(email);
+				neo.setFirstname(firstname);
+				neo.setLastname(lastname);
+				neo.setPassword(password);
+				neo.setRolename(rolename);
+				neo.setCreationDate(sqlDate);
 
 				ud.save(neo);
 				request.getServletContext().getRequestDispatcher("/tabu").forward(request, response);
@@ -93,5 +80,4 @@ public class AddUser extends HttpServlet {
 			response.sendRedirect(request.getContextPath());
 		}
 	}
-
 }
