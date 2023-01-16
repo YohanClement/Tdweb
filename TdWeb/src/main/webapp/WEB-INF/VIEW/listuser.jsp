@@ -51,55 +51,58 @@
 		</div>
 	</nav>
 
-	<h1>Gestion des Utilisateurs</h1>
+
 	<div class="container">
-		
-		<table class="table table-bordered" data-toggle="table"
-			data-pagination="true" data-search="true" data-page-size="5"
-			data-page-list="[5, 10, 25, 50, All]">
-			<thead class="th">
-				<tr>
-					<th>ID</th>
-					<th>Prénom</th>
-					<th>Nom de famille</th>
-					<th>Date de création</th>
-					<th>Email</th>
-					<th>Poste</th>
-					<th>Gestion</th>
-
-				</tr>
-			</thead>
-			<tbody>
-
-				<c:forEach items="${user}" var="u">
+		<div class="card">
+			<h1>Gestion des Utilisateurs</h1>
+			<table class="table table-bordered" data-toggle="table"
+				data-pagination="true" data-search="true" data-page-size="5"
+				data-page-list="[5, 10, 25, 50, All]">
+				<thead class="th">
 					<tr>
-						<td>${u.iduser}</td>
-						<td>${u.firstname}</td>
-						<td>${u.lastname}</td>
-						<td><fmt:formatDate value="${u.creationDate}" pattern="yyyy-MM-dd" /></td>
-						<td>${u.email}</td>
-						<td>${u.rolename}</td>
-						<td>
-							<div class="d-inline">
-								<form action="change" method="get">
-									<button type="submit" class="btn btn-outline-primary" name="id"
-										value="${u.iduser}">
-										<i class="bi bi-pen-fill"></i>
-									</button>
-								</form>
-								<form action="delete" method="get">
-									<button class="btn btn-outline-primary" type="submit" name="id"
-										value="${u.iduser}"
-										onclick="return confirm('Are you sure you want to delete this item?');">
-										<i class="bi bi-x-square-fill"></i>
-									</button>
-								</form>
-							</div>
-						</td>
+						<th>ID</th>
+						<th>Prénom</th>
+						<th>Nom de famille</th>
+						<th>Date de création</th>
+						<th>Email</th>
+						<th>Poste</th>
+						<th>Gestion</th>
+
 					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
+				</thead>
+				<tbody>
+
+					<c:forEach items="${user}" var="u">
+						<tr>
+							<td>${u.iduser}</td>
+							<td>${u.firstname}</td>
+							<td>${u.lastname}</td>
+							<td><fmt:formatDate value="${u.creationDate}"
+									pattern="yyyy-MM-dd" /></td>
+							<td>${u.email}</td>
+							<td>${u.rolename}</td>
+							<td>
+								<div class="d-inline">
+									<form action="change" method="get">
+										<button type="submit" class="btn btn-outline-primary"
+											name="id" value="${u.iduser}">
+											<i class="bi bi-pen-fill"></i>
+										</button>
+									</form>
+									<form action="delete" method="get">
+										<button class="btn btn-outline-primary" type="submit"
+											name="id" value="${u.iduser}"
+											onclick="return confirm('Are you sure you want to delete this item?');">
+											<i class="bi bi-x-square-fill"></i>
+										</button>
+									</form>
+								</div>
+							</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
 	</div>
 </body>
 </html>

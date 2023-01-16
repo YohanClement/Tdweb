@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="Styles.css">
 <title>Mise a jour</title>
 </head>
-<body>
+<body class="body">
 	<nav class="navbar navbar-expand-lg navbar-light bg-dark">
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarNav" aria-controls="navbarNav"
@@ -32,43 +32,47 @@
 		<a href="logout" class="btn btn-primary">Logout</a>
 
 	</nav>
-	<h2 class="fw-normal mb-3 pb-3 text-center">Editer le profil de
-		l'employé ${emp.lastName} ${emp.firstName}</h2>
+	<div class="container">
+		<div class="card">
+			<h2 class="fw-normal mb-3 pb-3 text-center">Editer le profil de
+				l'employé ${emp.lastName} ${emp.firstName}</h2>
 
-	<form action="update" method="post">
+			<form action="update" method="post">
 
-		<input type="hidden" class="form-control" id="formGroupExampleInput"
-			placeholder="id" name="id" value="${id}">
+				<input type="hidden" class="form-control" id="formGroupExampleInput"
+					placeholder="id" name="id" value="${id}">
 
 
-		<div class="form-outline mb-4">
-			<label><b>Prénom</b></label> <input type="text"
-				class="form-control" placeholder="firstname" name="firstname"
-				value="${emp.firstName}">
+				<div class="form-outline mb-4">
+					<label><b>Prénom</b></label> <input type="text"
+						class="form-control" placeholder="firstname" name="firstname"
+						value="${emp.firstName}">
+				</div>
+
+				<div class="form-outline mb-4">
+					<label for="lastname"><b>Nom de Famille</b></label> <input
+						type="text" class="form-control form-control-lg"
+						placeholder="lastname" name="lastname" value="${emp.lastName}">
+				</div>
+
+				<div class="form-outline mb-4">
+					<label for="rolename"><b>Titre du poste</b></label> <input
+						type="text" class="form-control form-control-lg"
+						placeholder="rolename" name="rolename" value="${emp.title}">
+				</div>
+
+				<div>
+					<label for="start"><b>Date d'entrée:</b></label> <input type="date"
+						value="${emp.startDate }" name="date">
+				</div>
+
+				<div class="pt-1 mb-4">
+					<button class="btn btn-primary mb-4" type="submit" name="id"
+						value="${id}">S'enregistrer</button>
+				</div>
+			</form>
 		</div>
-
-		<div class="form-outline mb-4">
-			<label for="lastname"><b>Nom de Famille</b></label> <input type="text"
-				class="form-control form-control-lg" placeholder='lastname'
-				name="lastname" value="${emp.lastName}">
-		</div>
-
-		<div class="form-outline mb-4">
-			<label for="rolename"><b>Titre du poste</b></label> <input type="text"
-				class="form-control form-control-lg" placeholder="rolename"
-				name="rolename" value="${emp.title}">
-		</div>
-
-		<div>
-			<label for="start"><b>Date d'entrée:</b></label> <input type="date" value="${emp.startDate }"
-				name="date" >
-		</div>
-
-		<div class="pt-1 mb-4">
-			<button class="btn btn-primary mb-4" type="submit" name="id"
-				value="${id}">S'enregistrer</button>
-		</div>
-	</form>
+	</div>
 </body>
 
 

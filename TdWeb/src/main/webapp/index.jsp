@@ -22,9 +22,6 @@
 		<div class="card">
 
 			<div class="card-body p-4 p-lg-5 text-black">
-				<c:if test="${user == null }">
-					<h1 id="error">${message}</h1>
-				</c:if>
 				<form action="login" method="post">
 
 					<h2 class="fw-normal mb-3 pb-3 text-center"

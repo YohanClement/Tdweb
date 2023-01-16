@@ -27,7 +27,7 @@
 <link rel="stylesheet" href="Styles.css">
 
 </head>
-<body>
+<body class="body">
 	<nav class="navbar navbar-expand-lg navbar-light bg-dark">
 		<span class="text-white">YohanCorp</span>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -55,56 +55,62 @@
 		</div>
 	</nav>
 
-	<h1 class="text-center">Gestion des employé.e.s</h1>
+	
+
 	<div class="container">
-		<table class="table table-bordered" data-toggle="table"
-			data-pagination="true" data-search="true" data-page-size="5"
-			data-page-list="[5, 10, 25, 50, All]">
-			<thead class="th">
-				<tr>
-					<th>ID</th>
-					<th>Prénom</th>
-					<th>Nom de famille</th>
-					<th>Date d'entrée</th>
-					<th>Titre</th>
-					<th>Gestion</th>
-
-				</tr>
-			</thead>
-			<tbody>
-
-				<c:forEach items="${emp}" var="e">
-
+		
+		<div class="card">
+			<h1 class="text-center">Gestion des employé.e.s</h1>
+			<table class="table table-bordered" data-toggle="table"
+				data-pagination="true" data-search="true" data-page-size="5"
+				data-page-list="[5, 10, 25, 50, All]">
+				<thead class="th">
 					<tr>
-						<td>${e.empId}</td>
-						<td>${e.firstName}</td>
-						<td>${e.lastName}</td>
-						<td> <fmt:formatDate value="${e.startDate}" pattern="yyyy-MM-dd" /></td>
-						<td>${e.title}</td>
+						<th>ID</th>
+						<th>Prénom</th>
+						<th>Nom de famille</th>
+						<th>Date d'entrée</th>
+						<th>Titre</th>
+						<th>Gestion</th>
 
-						<td>
-							<div class="d-inline">
-								<form action="update" method="get">
-									<button type="submit" class="btn btn-outline-primary" name="id"
-										value="${e.empId}">
-										<i class="bi bi-pen-fill"></i>
-									</button>
-								</form>
-								<c:if test="${me.droit == 'admin'}">
-									<form action="deleteE" method="get">
-										<button class="btn btn-outline-primary" type="submit"
-											name="id" value="${e.empId}"
-											onclick="return confirm('confirmez la suppression');">
-											<i class="bi bi-x-square-fill"></i>
+					</tr>
+				</thead>
+				<tbody>
+
+					<c:forEach items="${emp}" var="e">
+
+						<tr>
+							<td>${e.empId}</td>
+							<td>${e.firstName}</td>
+							<td>${e.lastName}</td>
+							<td><fmt:formatDate value="${e.startDate}"
+									pattern="yyyy-MM-dd" /></td>
+							<td>${e.title}</td>
+
+							<td>
+								<div class="d-inline">
+									<form action="update" method="get">
+										<button type="submit" class="btn btn-outline-primary"
+											name="id" value="${e.empId}">
+											<i class="bi bi-pen-fill"></i>
 										</button>
 									</form>
-								</c:if>
-							</div>
-						</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
+									<c:if test="${me.droit == 'admin'}">
+										<form action="deleteE" method="get">
+											<button class="btn btn-outline-primary" type="submit"
+												name="id" value="${e.empId}"
+												onclick="return confirm('confirmez la suppression');">
+												<i class="bi bi-x-square-fill"></i>
+											</button>
+										</form>
+									</c:if>
+								</div>
+							</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
 	</div>
 </body>
 </html>
