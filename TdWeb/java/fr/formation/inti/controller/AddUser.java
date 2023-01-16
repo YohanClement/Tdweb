@@ -8,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import fr.formation.inti.entity.User;
 import fr.formation.inti.service.UserService;
@@ -56,7 +55,7 @@ public class AddUser extends HttpServlet {
 			Date date = new Date(System.currentTimeMillis());
 			java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
-			User user = ud.findbylog(email, password);
+			User user = ud.findbyemail(email);
 			
 			
 			if (user == null) {
@@ -74,7 +73,7 @@ public class AddUser extends HttpServlet {
 			} else {
 				String message = "Utilisateur déja connu";
 				request.setAttribute("message", message);
-				request.getServletContext().getRequestDispatcher("/index").forward(request, response);
+				request.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 			}
 
 	}

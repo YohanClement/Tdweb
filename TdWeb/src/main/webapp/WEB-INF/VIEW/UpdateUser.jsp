@@ -42,25 +42,25 @@
 
 
 		<div class="form-outline mb-4">
-			<label><b>Firstname</b></label> <input type="text"
+			<label><b>Prénom</b></label> <input type="text"
 				class="form-control" name="firstname"
 				value="${user.firstname}">
 		</div>
 
 		<div class="form-outline mb-4">
-			<label for="lastname"><b>Lastname</b></label> <input type="text"
+			<label for="lastname"><b>Nom de famille</b></label> <input type="text"
 				class="form-control form-control-lg" 
 				name="lastname" value="${user.lastname}">
 		</div>
 
 		<div class="form-outline mb-4">
-			<label for="rolename"><b>Role Name</b></label> <input type="text"
+			<label for="rolename"><b>Poste</b></label> <input type="text"
 				class="form-control form-control-lg" 
 				name="rolename" value="${user.rolename}">
 		</div>
 
 		<div>
-			<label for="start"><b>Start date:</b></label> <input type="date"
+			<label for="start"><b>Date de création</b></label> <input type="date"
 				value="${user.creationDate }" name="date">
 		</div>
 
@@ -71,7 +71,7 @@
 		</div>
 		
 		<div>
-			<label for="password"><b>Password</b></label> <input type="password"
+			<label for="password"><b>mot de passe</b></label> <input type="password"
 				class="form-control form-control-lg" 
 				name="email" value="${user.password}">
 		</div>

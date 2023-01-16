@@ -64,7 +64,7 @@ public class LoginController extends HttpServlet {
 			HttpSession mysession = request.getSession();
 			mysession.setMaxInactiveInterval(30 * 60); // 30 min inactif
 			request.getSession().setAttribute("message",
-					"<h1> Bonjour " + user.getFirstname() + " " + user.getLastname() + "<h1>");
+					"<p> Bonjour " + user.getFirstname() + " " + user.getLastname() + "<p>");
 			mysession.setAttribute("me", user);
 			request.getServletContext().getRequestDispatcher("/tab").forward(request, response);
 			return;

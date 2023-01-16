@@ -17,9 +17,9 @@
 </head>
 
 <body>
+	<div class="container">
 
-	<section class="vh-100" style="background-color: #9A616D;">
-		<div class="container h-100">
+		<div class="card">
 
 			<div class="card-body p-4 p-lg-5 text-black">
 				<c:if test="${user == null }">
@@ -28,11 +28,11 @@
 				<form action="login" method="post">
 
 					<h2 class="fw-normal mb-3 pb-3 text-center"
-						style="letter-spacing: 1px;">Sign into your account</h2>
+						style="letter-spacing: 1px;">Connection</h2>
 
 					<div class="form-outline mb-4">
 						<label for="email"><b>Email</b></label> <input type="text"
-							class="form-control form-control-lg" placeholder="Enter email"
+							class="form-control form-control-lg" placeholder="Votre Email"
 							name="email" required>
 
 					</div>
@@ -40,25 +40,26 @@
 					<div class="form-outline mb-4">
 						<label for="password"><b>Password</b></label> <input
 							type="password" class="form-control form-control-lg"
-							placeholder="Enter Password" name="password" required>
+							name="password" required>
 					</div>
 
 					<div class="pt-1 mb-4">
-						<button class="btn btn-primary mb-4" type="submit">Se
+						<button class="btn btn-primary " type="submit">Se
 							connecter</button>
 					</div>
 				</form>
-				
-				<a href="add" class="nav-link text-white">Ajouter
-						un user</a>
-				<c:if
-					test="${Nope == 'Incorrect login. Please check your email ans password.'}">
-					<h1 id="error">${message}</h1>
-				</c:if>
+				<div class="pt-1 ">
+					<a href="add" class="btn btn-outline-primary">Ajouter un user</a>
+				</div>
+				<div>
+					<c:if
+						test="${Nope == 'Incorrect login. Please check your email ans password.'}">
+						<h1 id="error">${message}</h1>
+					</c:if>
+				</div>
 			</div>
 		</div>
-
-	</section>
+	</div>
 </body>
 
 </html>

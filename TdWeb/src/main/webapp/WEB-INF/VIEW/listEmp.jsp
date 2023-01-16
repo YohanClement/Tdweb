@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>list employee</title>
+<title>liste employee</title>
 
 
 <link
@@ -47,7 +47,7 @@
 				</c:if>
 			</ul>
 		</div>
-		<div class="message">
+		<div class="container">
 			<span class="text-white justify-content-center">${message}</span>
 		</div>
 		<div>
@@ -65,7 +65,7 @@
 					<th>ID</th>
 					<th>Prénom</th>
 					<th>Nom de famille</th>
-					<th>Date d'entrée</th>
+					<th>Date d'entré.e</th>
 					<th>Titre</th>
 					<th>Gestion</th>
 

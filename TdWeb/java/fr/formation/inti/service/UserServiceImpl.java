@@ -19,7 +19,12 @@ public class UserServiceImpl implements UserService {
 		dao.commit(true);
 		return c;
 	}
-
+	public User findbyemail(String Email) {
+		dao.beginTransaction();
+		User c = dao.findbyemail(Email);
+		dao.commit(true);
+		return c;
+	}
 	public User findbylog(String Email, String Password) {
 		dao.beginTransaction();
 		User c = dao.findbylog(Email, Password);
@@ -54,5 +59,4 @@ public class UserServiceImpl implements UserService {
 		dao.deleteById(id);
 		dao.commit(true);
 	}
-
 }
