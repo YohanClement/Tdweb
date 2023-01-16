@@ -63,7 +63,6 @@ public class ModificationControllerEmp extends HttpServlet {
 		if (session != null) {
 			String iduser = request.getParameter("id");
 			Integer id = Integer.parseInt(iduser);
-
 			Employee emp = ud.findById(id);
 
 			String firstname = request.getParameter("firstname");
@@ -82,7 +81,7 @@ public class ModificationControllerEmp extends HttpServlet {
 			}
 
 			emp.setFirstName(firstname);
-			emp.setFirstName(lastname);
+			emp.setLastName(lastname);
 			emp.setTitle(rolename);
 
 			ud.save(emp);
