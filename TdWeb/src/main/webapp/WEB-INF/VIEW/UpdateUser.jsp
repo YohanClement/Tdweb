@@ -73,7 +73,7 @@
 
 				<div>
 					<label for="password"><b>mot de passe</b></label> <input
-						type="password" class="form-control form-control-lg" name="email"
+						type="password" class="form-control form-control-lg" name="password"
 						value="${user.password}">
 				</div>
 

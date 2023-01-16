@@ -53,6 +53,7 @@
 
 	<h1>Gestion des Utilisateurs</h1>
 	<div class="container">
+		
 		<table class="table table-bordered" data-toggle="table"
 			data-pagination="true" data-search="true" data-page-size="5"
 			data-page-list="[5, 10, 25, 50, All]">
@@ -75,7 +76,7 @@
 						<td>${u.iduser}</td>
 						<td>${u.firstname}</td>
 						<td>${u.lastname}</td>
-						<td>${u.creationDate}</td>
+						<td><fmt:formatDate value="${u.creationDate}" pattern="yyyy-MM-dd" /></td>
 						<td>${u.email}</td>
 						<td>${u.rolename}</td>
 						<td>

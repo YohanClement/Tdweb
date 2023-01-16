@@ -45,9 +45,9 @@ public class ModificationController extends HttpServlet {
 			User user = ud.findById(id);
 			request.setAttribute("user", user);
 			request.setAttribute("id", user.getIduser());
-			request.getServletContext().getRequestDispatcher("/WEB-INF/UpdateUser.jsp").forward(request, response);
+			request.getServletContext().getRequestDispatcher("/WEB-INF/VIEW/UpdateUser.jsp").forward(request, response);
 		} else {
-			request.getServletContext().getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath());
 		}
 	}
 
@@ -70,7 +70,7 @@ public class ModificationController extends HttpServlet {
 			String lastname = request.getParameter("lastname");
 			String rolename = request.getParameter("rolename");
 			String date = request.getParameter("date");
-
+			String droit = request.getParameter("droit");
 			SimpleDateFormat availDate = new SimpleDateFormat("yyyy-MM-dd");
 			Date datecrea;
 			try {
@@ -86,7 +86,10 @@ public class ModificationController extends HttpServlet {
 			user.setLastname(lastname);
 			user.setRolename(rolename);
 			user.setPassword(password);
-
+			if ("admin".equals(droit))
+				user.setDroit(droit);
+			else
+				user.setDroit("user");
 			ud.save(user);
 
 			request.getServletContext().getRequestDispatcher("/tabu").forward(request, response);

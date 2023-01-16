@@ -45,36 +45,37 @@ public class AddUser extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-	
-			String email = request.getParameter("email");
-			String password = request.getParameter("password");
-			String firstname = request.getParameter("firstname");
-			String lastname = request.getParameter("lastname");
-			String rolename = request.getParameter("rolename");
 
-			Date date = new Date(System.currentTimeMillis());
-			java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		String firstname = request.getParameter("firstname");
+		String lastname = request.getParameter("lastname");
+		String rolename = request.getParameter("rolename");
 
-			User user = ud.findbyemail(email);
-			
-			
-			if (user == null) {
-				User neo = new User();
-				neo.setEmail(email);
-				neo.setFirstname(firstname);
-				neo.setLastname(lastname);
-				neo.setPassword(password);
-				neo.setRolename(rolename);
-				neo.setCreationDate(sqlDate);
+		Date date = new Date(System.currentTimeMillis());
+		java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
-				ud.save(neo);
-				request.getServletContext().getRequestDispatcher("/tabu").forward(request, response);
+		User user = ud.findbyemail(email);
 
-			} else {
-				String message = "Utilisateur déja connu";
-				request.setAttribute("message", message);
-				request.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-			}
+		if (user == null) {
+			User neo = new User();
+			neo.setEmail(email);
+			neo.setFirstname(firstname);
+			neo.setLastname(lastname);
+			neo.setPassword(password);
+			neo.setRolename(rolename);
+			neo.setCreationDate(sqlDate);
+
+			neo.setDroit("user");
+
+			ud.save(neo);
+			request.getServletContext().getRequestDispatcher("/tabu").forward(request, response);
+
+		} else {
+			String message = "Utilisateur déja connu";
+			request.setAttribute("message", message);
+			request.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+		}
 
 	}
 }
