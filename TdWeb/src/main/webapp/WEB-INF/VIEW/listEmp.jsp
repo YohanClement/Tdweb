@@ -65,7 +65,7 @@
 					<th>ID</th>
 					<th>Prénom</th>
 					<th>Nom de famille</th>
-					<th>Date d'entré.e</th>
+					<th>Date d'entrée</th>
 					<th>Titre</th>
 					<th>Gestion</th>
 

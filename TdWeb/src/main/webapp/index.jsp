@@ -32,13 +32,11 @@
 
 					<div class="form-outline mb-4">
 						<label for="email"><b>Email</b></label> <input type="text"
-							class="form-control form-control-lg" placeholder="Votre Email"
-							name="email" required>
-
+							class="form-control form-control-lg" name="email" required>
 					</div>
 
 					<div class="form-outline mb-4">
-						<label for="password"><b>Password</b></label> <input
+						<label for="password"><b>Mot de passe</b></label> <input
 							type="password" class="form-control form-control-lg"
 							name="password" required>
 					</div>
