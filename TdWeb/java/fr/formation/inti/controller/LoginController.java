@@ -56,7 +56,7 @@ public class LoginController extends HttpServlet {
 		User user = ud.findbylog(email, password);
 
 		if (user == null) {
-			request.setAttribute("Nope", "Incorrect login. Please check your email ans password.");
+			request.setAttribute("message", "Problème de connection ! Vérifiez votre émail et votre mot de passe");
 			response.sendRedirect(request.getContextPath());
 			return;
 

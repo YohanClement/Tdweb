@@ -47,9 +47,8 @@
 					<a href="add" class="btn btn-outline-primary">Ajouter un user</a>
 				</div>
 				<div>
-					<c:if
-						test="${Nope == 'Incorrect login. Please check your email ans password.'}">
-						<h1 id="error">${message}</h1>
+					<c:if test="${not empty message}">
+						<h1>${message}</h1>
 					</c:if>
 				</div>
 			</div>

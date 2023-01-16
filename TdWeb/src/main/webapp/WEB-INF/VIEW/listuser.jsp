@@ -57,15 +57,17 @@
 			<h1>Gestion des Utilisateurs</h1>
 			<table class="table table-bordered" data-toggle="table"
 				data-pagination="true" data-search="true" data-page-size="5"
+				data-sort-class="table-active" data-sortable="true"
 				data-page-list="[5, 10, 25, 50, All]">
 				<thead class="th">
 					<tr>
-						<th>ID</th>
-						<th>Prénom</th>
-						<th>Nom de famille</th>
-						<th>Date de création</th>
-						<th>Email</th>
-						<th>Poste</th>
+						<th data-field="id" data-sortable="true">ID</th>
+						<th data-field="fistname" data-sortable="true">Prénom</th>
+						<th data-field="lastname" data-sortable="true">Nom de famille</th>
+						<th data-field="dateCreation" data-sortable="true">Date de
+							création</th>
+						<th data-field="email" data-sortable="true">Email</th>
+						<th data-field="title" data-sortable="true">Poste</th>
 						<th>Gestion</th>
 
 					</tr>

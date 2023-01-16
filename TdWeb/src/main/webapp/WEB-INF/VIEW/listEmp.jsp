@@ -55,22 +55,23 @@
 		</div>
 	</nav>
 
-	
+
 
 	<div class="container">
-		
+
 		<div class="card">
 			<h1 class="text-center">Gestion des employé.e.s</h1>
 			<table class="table table-bordered" data-toggle="table"
 				data-pagination="true" data-search="true" data-page-size="5"
+				data-sort-class="table-active" data-sortable="true"
 				data-page-list="[5, 10, 25, 50, All]">
 				<thead class="th">
 					<tr>
-						<th>ID</th>
-						<th>Prénom</th>
-						<th>Nom de famille</th>
-						<th>Date d'entrée</th>
-						<th>Titre</th>
+						<th data-field="id" data-sortable="true">ID</th>
+						<th data-field="firstname" data-sortable="true">Prénom</th>
+						<th data-field="lastname" data-sortable="true">Nom de famille</th>
+						<th data-field="startDate" data-sortable="true">Date d'entrée</th>
+						<th data-field="title" data-sortable="true">Titre</th>
 						<th>Gestion</th>
 
 					</tr>
