@@ -79,7 +79,7 @@
 						<td>${e.empId}</td>
 						<td>${e.firstName}</td>
 						<td>${e.lastName}</td>
-						<td>${e.startDate}</td>
+						<td> <fmt:formatDate value="${e.startDate}" pattern="yyyy-MM-dd" /></td>
 						<td>${e.title}</td>
 
 						<td>
