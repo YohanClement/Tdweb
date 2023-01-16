@@ -38,9 +38,9 @@ public class TabController extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		if (session != null) {
-			List<Employee> emp = ed.findAll();
+			List<Employee> emps = ed.findAll();
 
-			request.setAttribute("emp", emp);
+			request.setAttribute("emp", emps);
 			request.getServletContext().getRequestDispatcher("/WEB-INF/VIEW/listEmp.jsp").forward(request, response);
 			return;
 		} else {

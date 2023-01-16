@@ -3,7 +3,9 @@
 .message {
 	position: absolue;
 	top: 0;
-	left: 50 rem;
+	left: 100 rem;
+	font-size: 2px;
+	
 
 }
 

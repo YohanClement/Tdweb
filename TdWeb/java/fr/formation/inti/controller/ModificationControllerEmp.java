@@ -19,7 +19,7 @@ import fr.formation.inti.service.employeeService;
 /**
  * Servlet implementation class ModificationController
  */
-@WebServlet("/changeE")
+@WebServlet("/update")
 public class ModificationControllerEmp extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private employeeService ud;
@@ -42,9 +42,9 @@ public class ModificationControllerEmp extends HttpServlet {
 		if (session != null) {
 			String iduser = request.getParameter("id");
 			Integer id = Integer.parseInt(iduser);
-			Employee user = ud.findById(id);
-			request.setAttribute("user", user);
-			request.setAttribute("id", user.getEmpId());
+			Employee emp = ud.findById(id);
+			request.setAttribute("emp", emp);
+			request.setAttribute("id", emp.getEmpId());
 			request.getServletContext().getRequestDispatcher("/WEB-INF/VIEW/Update.jsp").forward(request, response);
 		} else {
 			response.sendRedirect(request.getContextPath());
@@ -64,7 +64,7 @@ public class ModificationControllerEmp extends HttpServlet {
 			String iduser = request.getParameter("id");
 			Integer id = Integer.parseInt(iduser);
 
-			Employee user = ud.findById(id);
+			Employee emp = ud.findById(id);
 
 			String firstname = request.getParameter("firstname");
 			String lastname = request.getParameter("lastname");
@@ -75,17 +75,17 @@ public class ModificationControllerEmp extends HttpServlet {
 			Date datecrea;
 			try {
 				datecrea = availDate.parse(date);
-				user.setStartDate(datecrea);
+				emp.setStartDate(datecrea);
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
-			user.setFirstName(firstname);
-			user.setFirstName(lastname);
-			user.setTitle(rolename);
+			emp.setFirstName(firstname);
+			emp.setFirstName(lastname);
+			emp.setTitle(rolename);
 
-			ud.save(user);
+			ud.save(emp);
 
 			request.getServletContext().getRequestDispatcher("/tab").forward(request, response);
 

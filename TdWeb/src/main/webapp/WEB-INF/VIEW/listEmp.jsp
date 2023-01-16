@@ -24,7 +24,7 @@
 	href="https://unpkg.com/bootstrap-table@1.21.2/dist/bootstrap-table.min.css">
 
 
-<link rel="stylesheet" href="//Styles.css">
+<link rel="stylesheet" href="Styles.css">
 
 </head>
 <body>
@@ -53,26 +53,22 @@
 		<div>
 			<a href="logout" class="btn btn-primary">Logout</a>
 		</div>
-
-
 	</nav>
 
-	<h1 class="text-center my-5">Gestion des employées</h1>
+	<h1 class="text-center">Gestion des employé.e.s</h1>
 	<div class="container">
-
 		<table class="table table-bordered" data-toggle="table"
 			data-pagination="true" data-search="true" data-page-size="5"
 			data-page-list="[5, 10, 25, 50, All]">
 			<thead class="th">
 				<tr>
 					<th>ID</th>
-					<th>First Name</th>
-					<th>Last Name</th>
-					<th>Start Date</th>
-					<th>Title</th>
-					<c:if test="${me.droit == 'admin'}">
-						<th>Action</th>
-					</c:if>
+					<th>Prénom</th>
+					<th>Nom de famille</th>
+					<th>Date d'entrée</th>
+					<th>Titre</th>
+					<th>Gestion</th>
+
 				</tr>
 			</thead>
 			<tbody>
@@ -85,15 +81,16 @@
 						<td>${e.lastName}</td>
 						<td>${e.startDate}</td>
 						<td>${e.title}</td>
-						<c:if test="${me.droit == 'admin'}">
-							<td>
-								<div class="d-inline">
-									<form action="changeE" method="get">
-										<button type="submit" class="btn btn-outline-primary"
-											name="id" value="${e.empId}">
-											<i class="bi bi-pen-fill"></i>
-										</button>
-									</form>
+
+						<td>
+							<div class="d-inline">
+								<form action="update" method="get">
+									<button type="submit" class="btn btn-outline-primary" name="id"
+										value="${e.empId}">
+										<i class="bi bi-pen-fill"></i>
+									</button>
+								</form>
+								<c:if test="${me.droit == 'admin'}">
 									<form action="deleteE" method="get">
 										<button class="btn btn-outline-primary" type="submit"
 											name="id" value="${e.empId}"
@@ -101,9 +98,9 @@
 											<i class="bi bi-x-square-fill"></i>
 										</button>
 									</form>
-								</div>
-							</td>
-						</c:if>
+								</c:if>
+							</div>
+						</td>
 					</tr>
 				</c:forEach>
 			</tbody>

@@ -57,6 +57,8 @@ public class AddUser extends HttpServlet {
 			java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
 			User user = ud.findbylog(email, password);
+			
+			
 			if (user == null) {
 				User neo = new User();
 				neo.setEmail(email);

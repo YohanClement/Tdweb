@@ -33,40 +33,40 @@
 
 	</nav>
 	<h2 class="fw-normal mb-3 pb-3 text-center">Editer le profil de
-		l'employé ${user.lastName} ${user.firstName}</h2>
+		l'employé ${emp.lastName} ${emp.firstName}</h2>
 
-	<form action="change" method="post">
+	<form action="update" method="post">
 
 		<input type="hidden" class="form-control" id="formGroupExampleInput"
 			placeholder="id" name="id" value="${id}">
 
 
 		<div class="form-outline mb-4">
-			<label><b>Firstname</b></label> <input type="text"
+			<label><b>Prénom</b></label> <input type="text"
 				class="form-control" placeholder="firstname" name="firstname"
-				value="${user.firstName}">
+				value="${emp.firstName}">
 		</div>
 
 		<div class="form-outline mb-4">
-			<label for="lastname"><b>Lastname</b></label> <input type="text"
+			<label for="lastname"><b>Nom de Famille</b></label> <input type="text"
 				class="form-control form-control-lg" placeholder='lastname'
-				name="lastname" value="${user.lastName}">
+				name="lastname" value="${emp.lastName}">
 		</div>
 
 		<div class="form-outline mb-4">
-			<label for="rolename"><b>Role Name</b></label> <input type="text"
+			<label for="rolename"><b>Titre du poste</b></label> <input type="text"
 				class="form-control form-control-lg" placeholder="rolename"
-				name="rolename" value="${user.title}">
+				name="rolename" value="${emp.title}">
 		</div>
 
 		<div>
-			<label for="start"><b>Start date:</b></label> <input type="date" value="${user.startDate }"
+			<label for="start"><b>Date d'entrée:</b></label> <input type="date" value="${emp.startDate }"
 				name="date" >
 		</div>
 
 		<div class="pt-1 mb-4">
 			<button class="btn btn-primary mb-4" type="submit" name="id"
-				value="${id}">Enregistrer</button>
+				value="${id}">S'enregistrer</button>
 		</div>
 	</form>
 </body>
