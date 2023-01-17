@@ -16,8 +16,12 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet Filter implementation class ProtectionFilter
  */
-@WebFilter("/protect")
+@WebFilter("/*") // servelts affected by the filter urlPatterns
 public class ProtectionFilter implements Filter {
+
+	enum url {
+		addemp, delete, deleteE, logout, change, update, tab, tabu, login, add
+	}
 
 	/**
 	 * Default constructor.
@@ -36,6 +40,7 @@ public class ProtectionFilter implements Filter {
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
+
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		// TODO Auto-generated method stub
@@ -43,12 +48,25 @@ public class ProtectionFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 		HttpSession session = req.getSession(false);
-		if ("/login".equals(req.getServletPath()) || "/add".equals(req.getServletPath()))
+		boolean urlExist = false;
+		boolean nosession = false;
+		for (url i : url.values()) {
+			String j = "/" + i;
+			if (j.equals(req.getServletPath())) {
+				urlExist = true;
+			}
+		}
+
+		if ("/login".equals(req.getServletPath()) || "/add".equals(req.getServletPath())
+				|| "/index.jsp".equals(req.getServletPath()) || req.getServletPath().endsWith(".css") ) {
+			nosession = true;
+		}
+
+		if ((urlExist && session != null) || nosession) {
 			chain.doFilter(request, response);
-		else if (session != null)
-			chain.doFilter(request, response);
-		else
-			req.getServletContext().getRequestDispatcher("/WEB-INF/view/index.jsp").forward(request, response);
+		} else {
+			res.sendRedirect(req.getContextPath());
+		}
 	}
 
 	/**
