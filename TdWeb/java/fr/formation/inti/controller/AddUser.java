@@ -69,11 +69,13 @@ public class AddUser extends HttpServlet {
 			neo.setDroit("user");
 
 			ud.save(neo);
-			request.getServletContext().getRequestDispatcher("/tab").forward(request, response);
+			String message = "Compte créé";
+			request.setAttribute("message", message);
+			request.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 
 		} else {
 			String message = "Utilisateur déja connu";
-			request.setAttribute("erreur", message);
+			request.setAttribute("message", message);
 			request.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 		}
 

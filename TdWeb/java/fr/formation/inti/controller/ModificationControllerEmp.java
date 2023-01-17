@@ -38,17 +38,14 @@ public class ModificationControllerEmp extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
-		if (session != null) {
-			String iduser = request.getParameter("id");
-			Integer id = Integer.parseInt(iduser);
-			Employee emp = ud.findById(id);
-			request.setAttribute("emp", emp);
-			request.setAttribute("id", emp.getEmpId());
-			request.getServletContext().getRequestDispatcher("/WEB-INF/VIEW/Update.jsp").forward(request, response);
-		} else {
-			response.sendRedirect(request.getContextPath());
-		}
+
+		String iduser = request.getParameter("id");
+		Integer id = Integer.parseInt(iduser);
+		Employee emp = ud.findById(id);
+		request.setAttribute("emp", emp);
+		request.setAttribute("id", emp.getEmpId());
+		request.getServletContext().getRequestDispatcher("/WEB-INF/VIEW/Update.jsp").forward(request, response);
+
 	}
 
 	/**
@@ -58,38 +55,32 @@ public class ModificationControllerEmp extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		HttpSession session = request.getSession(false);
+		String iduser = request.getParameter("id");
+		Integer id = Integer.parseInt(iduser);
+		Employee emp = ud.findById(id);
 
-		if (session != null) {
-			String iduser = request.getParameter("id");
-			Integer id = Integer.parseInt(iduser);
-			Employee emp = ud.findById(id);
+		String firstname = request.getParameter("firstname");
+		String lastname = request.getParameter("lastname");
+		String rolename = request.getParameter("rolename");
+		String date = request.getParameter("date");
 
-			String firstname = request.getParameter("firstname");
-			String lastname = request.getParameter("lastname");
-			String rolename = request.getParameter("rolename");
-			String date = request.getParameter("date");
-
-			SimpleDateFormat availDate = new SimpleDateFormat("yyyy-MM-dd");
-			Date datecrea;
-			try {
-				datecrea = availDate.parse(date);
-				emp.setStartDate(datecrea);
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			emp.setFirstName(firstname);
-			emp.setLastName(lastname);
-			emp.setTitle(rolename);
-
-			ud.save(emp);
-
-			request.getServletContext().getRequestDispatcher("/tab").forward(request, response);
-
-		} else {
-			response.sendRedirect(request.getContextPath());
+		SimpleDateFormat availDate = new SimpleDateFormat("yyyy-MM-dd");
+		Date datecrea;
+		try {
+			datecrea = availDate.parse(date);
+			emp.setStartDate(datecrea);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+
+		emp.setFirstName(firstname);
+		emp.setLastName(lastname);
+		emp.setTitle(rolename);
+
+		ud.save(emp);
+
+		request.getServletContext().getRequestDispatcher("/tab").forward(request, response);
+
 	}
 }

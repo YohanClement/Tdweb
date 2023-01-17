@@ -28,7 +28,7 @@
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-dark">
-		<span class="text-white">YohanCorp</span>
+		<span class="text-white mx-2">YohanCorp</span>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarNav" aria-controls="navbarNav"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -37,7 +37,7 @@
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav">
 				<li class="nav-item active"><a class="nav-link text-white"
-					href="tab">Liste des employés</a></li>
+					href="tab">Accueil</a></li>
 				<li class="nav-item"><a class="nav-link text-white"
 					href="addemp">Ajouter un.e employé.e</a></li>
 

@@ -38,14 +38,10 @@ public class Addemployee extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
-
-		if (session != null) {
+	
 			request.getServletContext().getRequestDispatcher("/WEB-INF/VIEW/AppEmp.html").forward(request, response);
 
-		} else {
-			response.sendRedirect(request.getContextPath());
-		}
+		
 	}
 
 	/**
@@ -55,9 +51,6 @@ public class Addemployee extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		HttpSession session = request.getSession(false);
-
-		if (session != null) {
 			String firstname = request.getParameter("firstname");
 			String lastname = request.getParameter("lastname");
 			String rolename = request.getParameter("rolename");
@@ -80,9 +73,6 @@ public class Addemployee extends HttpServlet {
 			ud.save(neo);
 			request.getServletContext().getRequestDispatcher("/tab").forward(request, response);
 
-		} else {
-			response.sendRedirect(request.getContextPath());
-		}
 	}
 
 }

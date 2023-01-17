@@ -17,10 +17,16 @@
 </head>
 
 <body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+		<span class="text-white mx-2">YohanCorp</span>
+
+		<div class="pt-1 mx-5">
+			<a href="add" class="text-white">Ajouter un user</a>
+		</div>
+	</nav>
+
 	<div class="container">
-
 		<div class="card">
-
 			<div class="card-body p-4 p-lg-5 text-black">
 				<form action="login" method="post">
 
@@ -28,32 +34,32 @@
 						style="letter-spacing: 1px;">Connection</h2>
 
 					<div class="form-outline mb-4">
-						<label for="email"><b>Email</b></label> <input type="text"
-							class="form-control form-control-lg" name="email" required>
+						<label for="email"><b>Email</b></label> <input type="email"
+							min="8" max="45" class="form-control form-control-lg"
+							name="email" required>
 					</div>
 
 					<div class="form-outline mb-4">
 						<label for="password"><b>Mot de passe</b></label> <input
 							type="password" class="form-control form-control-lg"
-							name="password" required>
+							name="password" min="8" max="45" required>
 					</div>
 
-					<div class="pt-1 mb-4">
+					<div class="pt-1">
 						<button class="btn btn-primary " type="submit">Se
 							connecter</button>
 					</div>
 				</form>
-				<div class="pt-1 ">
-					<a href="add" class="btn btn-outline-primary">Ajouter un user</a>
-				</div>
+
 				<div>
 					<c:if test="${not empty message}">
-						<h1>${message}</h1>
+						<h1 style="color: red;">${message}</h1>
 					</c:if>
 				</div>
 			</div>
 		</div>
 	</div>
+
 </body>
 
 </html>

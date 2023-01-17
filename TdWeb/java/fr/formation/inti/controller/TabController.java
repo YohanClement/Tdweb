@@ -36,17 +36,12 @@ public class TabController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
-		if (session != null) {
+		
 			List<Employee> emps = ed.findAll();
 
 			request.setAttribute("emp", emps);
 			request.getServletContext().getRequestDispatcher("/WEB-INF/VIEW/listEmp.jsp").forward(request, response);
 			return;
-		} else {
-			response.sendRedirect(request.getContextPath());
-
-		}
 	}
 
 	/**

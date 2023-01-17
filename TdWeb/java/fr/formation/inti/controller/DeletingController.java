@@ -34,15 +34,10 @@ public class DeletingController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
 
-		if (session != null) {
-			String id = request.getParameter("id");
-			ud.deleteById(Integer.parseInt(id));
-			request.getServletContext().getRequestDispatcher("/tabu").forward(request, response);
-		} else {
-			response.sendRedirect(request.getContextPath());
-		}
+		String id = request.getParameter("id");
+		ud.deleteById(Integer.parseInt(id));
+		request.getServletContext().getRequestDispatcher("/tabu").forward(request, response);
 
 	}
 

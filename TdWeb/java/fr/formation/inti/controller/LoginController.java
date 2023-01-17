@@ -35,13 +35,7 @@ public class LoginController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
-		if (session == null) {
-			response.sendRedirect(request.getContextPath());
 
-		} else {
-			response.sendRedirect(request.getContextPath());
-		}
 	}
 
 	/**
@@ -56,8 +50,9 @@ public class LoginController extends HttpServlet {
 		User user = ud.findbylog(email, password);
 
 		if (user == null) {
-			request.setAttribute("message", "Problème de connection ! Vérifiez votre émail et votre mot de passe");
-			response.sendRedirect(request.getContextPath());
+			String message = "Problème de connection ! Vérifiez votre émail et votre mot de passe";
+			request.setAttribute("message", message);
+			request.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 			return;
 
 		} else {

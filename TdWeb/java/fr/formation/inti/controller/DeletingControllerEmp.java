@@ -7,9 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import fr.formation.inti.entity.User;
 import fr.formation.inti.service.EmployeeServiceImpl;
 import fr.formation.inti.service.employeeService;
 
@@ -35,15 +33,10 @@ public class DeletingControllerEmp extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
-	
-		if (session != null) {
-			String id = request.getParameter("id");
-			ud.deleteById(Integer.parseInt(id));
-			request.getServletContext().getRequestDispatcher("/tab").forward(request, response);
-		} else {
-			response.sendRedirect(request.getContextPath());
-		}
+
+		String id = request.getParameter("id");
+		ud.deleteById(Integer.parseInt(id));
+		request.getServletContext().getRequestDispatcher("/tab").forward(request, response);
 
 	}
 

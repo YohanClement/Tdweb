@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8" errorPage="error.jsp"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -38,7 +38,7 @@
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav">
 				<li class="nav-item active"><a class="nav-link text-white"
-					href="tab">Liste des employés</a></li>
+					href="tab">Accueil</a></li>
 				<li class="nav-item"><a class="nav-link text-white"
 					href="addemp">Ajouter un.e employé.e</a></li>
 				<c:if test="${me.droit == 'admin'}">

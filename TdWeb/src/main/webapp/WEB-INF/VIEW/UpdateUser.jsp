@@ -16,6 +16,7 @@
 </head>
 <body class="">
 	<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+		<span class="text-white mx-2">YohanCorp</span>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarNav" aria-controls="navbarNav"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -24,7 +25,7 @@
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav">
 				<li class="nav-item active"><a class="nav-link text-white"
-					href="tab">Liste des employés</a></li>
+					href="tab">Accueil</a></li>
 				<li class="nav-item"><a class="nav-link text-white"
 					href="AppEmp.html">Ajouter un employé</a></li>
 			</ul>
@@ -73,12 +74,14 @@
 
 				<div>
 					<label for="password"><b>mot de passe</b></label> <input
-						type="password" class="form-control form-control-lg" name="password"
-						value="${user.password}">
+						type="password" class="form-control form-control-lg"
+						name="password" value="${user.password}">
 				</div>
 
 				<fieldset>
-					<legend><b>Selection des droits</b></legend>
+					<legend>
+						<b>Selection des droits</b>
+					</legend>
 
 					<div>
 						<input type="radio" name="droit" onclick="getAnswer('admin')"

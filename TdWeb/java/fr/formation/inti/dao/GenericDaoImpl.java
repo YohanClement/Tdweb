@@ -29,7 +29,9 @@ public class GenericDaoImpl<T, ID extends Serializable> implements GenericDao<T,
 		if (!session.isOpen()) {
 			session = sessionFactory.openSession();
 		}
-		session.getTransaction().begin();
+		if (!session.getTransaction().isActive()) {
+			session.getTransaction().begin();
+		}
 	}
 
 	public void commit(boolean ok) {
@@ -38,7 +40,7 @@ public class GenericDaoImpl<T, ID extends Serializable> implements GenericDao<T,
 		} else {
 			session.getTransaction().rollback();
 		}
-		//session.close();
+		session.close();
 	}
 
 	public T findById(ID id) {

@@ -38,17 +38,13 @@ public class ModificationController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
-		if (session != null) {
+		
 			String iduser = request.getParameter("id");
 			Integer id = Integer.parseInt(iduser);
 			User user = ud.findById(id);
 			request.setAttribute("user", user);
 			request.setAttribute("id", user.getIduser());
 			request.getServletContext().getRequestDispatcher("/WEB-INF/VIEW/UpdateUser.jsp").forward(request, response);
-		} else {
-			response.sendRedirect(request.getContextPath());
-		}
 	}
 
 	/**
@@ -57,9 +53,7 @@ public class ModificationController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
-
-		if (session != null) {
+		
 			String iduser = request.getParameter("id");
 			Integer id = Integer.parseInt(iduser);
 			User user = ud.findById(id);
@@ -94,9 +88,6 @@ public class ModificationController extends HttpServlet {
 
 			request.getServletContext().getRequestDispatcher("/tabu").forward(request, response);
 
-		} else {
-			response.sendRedirect(request.getContextPath());
-		}
 	}
 
 }
