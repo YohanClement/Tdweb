@@ -49,7 +49,7 @@ public class ProtectionFilter implements Filter {
 		HttpServletResponse res = (HttpServletResponse) response;
 		HttpSession session = req.getSession(false);
 		boolean urlExist = false;
-		boolean nosession = false;
+		
 		for (url i : url.values()) {
 			String j = "/" + i;
 			if (j.equals(req.getServletPath())) {
@@ -57,10 +57,8 @@ public class ProtectionFilter implements Filter {
 			}
 		}
 
-		if ("/login".equals(req.getServletPath()) || "/add".equals(req.getServletPath())
-				|| "/index.jsp".equals(req.getServletPath()) || req.getServletPath().endsWith(".css") ) {
-			nosession = true;
-		}
+		boolean nosession = "/login".equals(req.getServletPath()) || "/add".equals(req.getServletPath())
+				|| "/index.jsp".equals(req.getServletPath()) || req.getServletPath().endsWith(".css") ;
 
 		if ((urlExist && session != null) || nosession) {
 			chain.doFilter(request, response);
