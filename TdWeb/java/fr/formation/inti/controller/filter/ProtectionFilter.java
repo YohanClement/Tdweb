@@ -64,6 +64,8 @@ public class ProtectionFilter implements Filter {
 
 		if ((urlExist && session != null) || nosession) {
 			chain.doFilter(request, response);
+		} else if (session != null && !urlExist) {
+			res.sendRedirect(req.getContextPath()+"/tab");
 		} else {
 			res.sendRedirect(req.getContextPath());
 		}
