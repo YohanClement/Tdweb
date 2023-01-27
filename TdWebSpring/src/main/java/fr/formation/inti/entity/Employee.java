@@ -42,7 +42,7 @@ public class Employee {
 
 	@Column(name = "EMP_ID", unique = true, nullable = false)
 	public Integer getEmpId() {
-		return empId;
+		return this.empId;
 	}
 
 	public void setEmpId(Integer empId) {
@@ -51,7 +51,7 @@ public class Employee {
 
 	@Column(name = "END_DATE")
 	public Date getEndDate() {
-		return endDate;
+		return this.endDate;
 	}
 
 	public void setEndDate(Date endDate) {
@@ -60,7 +60,7 @@ public class Employee {
 
 	@Column(name = "FIRST_NAME")
 	public String getFirstName() {
-		return firstName;
+		return this.firstName;
 	}
 
 	public void setFirstName(String firstName) {
@@ -69,7 +69,7 @@ public class Employee {
 
 	@Column(name = "LAST_NAME")
 	public String getLastName() {
-		return lastName;
+		return this.lastName;
 	}
 
 	public void setLastName(String lastName) {
@@ -87,7 +87,7 @@ public class Employee {
 
 	@Column(name = "TITLE")
 	public String getTitle() {
-		return title;
+		return this.title;
 	}
 
 	public void setTitle(String title) {

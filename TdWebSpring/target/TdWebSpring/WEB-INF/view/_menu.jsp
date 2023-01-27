@@ -7,19 +7,18 @@
 
 	<a href="${pageContext.request.contextPath}/welcome">Home</a> | &nbsp;
 
-	<a href="${pageContext.request.contextPath}/userInfo">User Info</a> |
-	&nbsp; <a href="${pageContext.request.contextPath}/admin">Admin</a>
+	<a href="${pageContext.request.contextPath}/userInfo">User Info</a> | &nbsp;
+	
+	<a href="${pageContext.request.contextPath}/admin">Admin</a>
 
 	<sec:authorize access="hasRole('ADMIN')">
-
-		<a href="${pageContext.request.contextPath}/employee">Employee</a>
+		| &nbsp;<a href="${pageContext.request.contextPath}/employee">Employee</a> 
 	</sec:authorize>
 
-	<c:if test="${pageContext.request.userPrincipal.name != null}">
- 
+	<sec:authorize access="isAuthenticated()">
      | &nbsp;
      <a href="${pageContext.request.contextPath}/logout">Logout</a>
 
-	</c:if>
+	</sec:authorize>
 
 </div>
