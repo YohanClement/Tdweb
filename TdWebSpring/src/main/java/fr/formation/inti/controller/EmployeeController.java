@@ -83,4 +83,10 @@ public class EmployeeController {
 		employeeservice.deleteById(id);
 		return "/employee";
 	}
+	
+	@GetMapping("/add")
+	public String add() {
+		return "add";
+		
+	}
 }
