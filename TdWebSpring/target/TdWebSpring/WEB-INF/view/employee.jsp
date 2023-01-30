@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	errorPage="error.jsp" pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>liste employee</title>
-
 
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
@@ -34,6 +34,9 @@
 
 		<div class="card">
 			<h1 class="text-center">Gestion des employé.e.s</h1>
+			
+			<a href="add"><button type="submit">Ajouter un employer</button></a>
+			
 			<table class="table table-bordered" data-toggle="table"
 				data-pagination="true" data-search="true" data-page-size="5"
 				data-sort-class="table-active" data-sortable="true"
@@ -69,12 +72,12 @@
 											<i class="bi bi-pen-fill"></i>
 										</button>
 									</form>
-									<form action="deleteE" method="get">
+									<form action="delete" method="get">
 										<button class="btn btn-outline-primary" type="submit"
 											name="id" value="${e.empId}"
 											onclick="return confirm('confirmez la suppression');">
 											<i class="bi bi-x-square-fill"></i>
-										</button>
+											</button>
 									</form>
 
 								</div>

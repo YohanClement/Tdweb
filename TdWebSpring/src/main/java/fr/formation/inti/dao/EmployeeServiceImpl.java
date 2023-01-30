@@ -18,12 +18,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 	private EmployeeDao dao;
 	
 	public Employee save(Employee entity) {
-		Employee emp = dao.save(entity);
+		Employee emp = dao.saveAndFlush(entity);
 		return emp;
 	}
 
 	public Optional<Employee> findById(Integer id) {
-		Optional<Employee> emp = findById(id);
+		Optional<Employee> emp = dao.findById(id);
 		return emp;
 	}
 
@@ -34,11 +34,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	public void deleteById(Integer id) {
 		dao.deleteById(id);
-	}
-
-
-	public void delete(Employee entity) {
-		dao.delete(entity);
 	}
 
 }

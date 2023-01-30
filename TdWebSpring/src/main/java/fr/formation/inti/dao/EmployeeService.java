@@ -8,8 +8,6 @@ import fr.formation.inti.entity.Employee;
 public interface EmployeeService {
 	
 	
-	void delete(Employee emp);
-	
 	Employee save(Employee emp);
 
 	List<Employee> findAll();

@@ -34,6 +34,9 @@
 
 		<div class="card">
 			<h1 class="text-center">Gestion des employé.e.s</h1>
+			
+			<a href="add"><button type="submit">Ajouter un employer</button></a>
+			
 			<table class="table table-bordered" data-toggle="table"
 				data-pagination="true" data-search="true" data-page-size="5"
 				data-sort-class="table-active" data-sortable="true"
@@ -63,13 +66,13 @@
 
 							<td>
 								<div class="d-inline">
-									<form action="update" modelAttribute="id" method="get">
+									<form action="update" method="get">
 										<button type="submit" class="btn btn-outline-primary"
 											name="id" value="${e.empId}">
 											<i class="bi bi-pen-fill"></i>
 										</button>
 									</form>
-									<form action="delete" modelAttribute="id" method="get">
+									<form action="delete" method="get">
 										<button class="btn btn-outline-primary" type="submit"
 											name="id" value="${e.empId}"
 											onclick="return confirm('confirmez la suppression');">

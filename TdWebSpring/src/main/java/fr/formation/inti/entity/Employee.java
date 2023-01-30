@@ -2,12 +2,17 @@ package fr.formation.inti.entity;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.text.ParseException;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Employee {
@@ -17,8 +22,6 @@ public class Employee {
 	private String lastName;
 	private Date startDate;
 	private String title;
-	
-	
 
 	public Employee() {
 	}
@@ -76,13 +79,21 @@ public class Employee {
 		this.lastName = lastName;
 	}
 
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
 	@Column(name = "START_DATE")
 	public Date getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
+	/**
+	 * @param startDate
+	 * @throws ParseException 
+	 */
+	public void setStartDate(Date datecrea){
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//		Date datecrea = sdf.parse(entry);
+		this.startDate = datecrea;
 	}
 
 	@Column(name = "TITLE")

@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -20,33 +21,34 @@
 				l'employé ${emp.lastName} ${emp.firstName}</h2>
 
 			<form:form method="POST" action="update" modelAttribute="emp">
+				<input type="hidden" name="id" value="${emp.empId }"></input>
 
 				<form:label path="firstName">
 					firstname<%-- <spring:message code="form.zodiac.sun" /> --%>
 				</form:label>
-				<form:input path="firstName" value="${emp.firstName}"/>
+				<form:input path="firstName" value="${emp.firstName}" />
 				<form:errors path="firstName" cssClass="error" />
-				
+
 				<form:label path="lastName">
 					lastname<%-- <spring:message code="form.zodiac.sun" /> --%>
 				</form:label>
-				<form:input path="lastName" value="${emp.lastName}"/>
+				<form:input path="lastName" value="${emp.lastName}" />
 				<form:errors path="lastName" cssClass="error" />
 
 				<form:label path="title">
 					title<%-- <spring:message code="form.zodiac.sun" /> --%>
 				</form:label>
-				<form:input path="title" value="${emp.title}"/>
+				<form:input path="title" value="${emp.title}" />
 				<form:errors path="title" cssClass="error" />
 
 				<form:label path="startDate">
-					Start date<%-- <spring:message code="form.zodiac.sun" /> --%>
+					Start date<spring:message code="form.zodiac.sun" />
 				</form:label>
 				<form:input path="startDate" value="${emp.startDate}"/>
-				<form:errors path="startDate" cssClass="error" />
+				<form:errors path="startDate" name="startDate" cssClass="error" />
 
 				<div class="pt-1 mb-4">
-					<form:button class="btn btn-primary mb-4" type="submit" value="S'enregistrer"/>
+					<input type="submit" value="Submit" />
 				</div>
 			</form:form>
 		</div>
