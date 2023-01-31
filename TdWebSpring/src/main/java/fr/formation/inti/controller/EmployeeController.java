@@ -2,6 +2,7 @@ package fr.formation.inti.controller;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,7 @@ import fr.formation.inti.entity.Employee;
 
 @Controller
 public class EmployeeController {
+	private static final Logger logger = Logger.getLogger(EmployeeController.class);
 
 	@Autowired
 	EmployeeService employeeservice;
@@ -45,6 +47,7 @@ public class EmployeeController {
 
 	@GetMapping("/employee")
 	public String showemp(Model model) {
+		logger.info("charging all employees");
 		List<Employee> emps = employeeservice.findAll();
 		model.addAttribute("emps", emps);
 		return "employee";
@@ -52,6 +55,7 @@ public class EmployeeController {
 
 	@GetMapping("/update")
 	public String update(Model model, @RequestParam("id") Integer ID) {
+		logger.info("updating");
 		Employee e = employeeservice.findById(ID).get();
 		model.addAttribute("emp", e);
 		return "update";
@@ -60,11 +64,13 @@ public class EmployeeController {
 	@PostMapping("/update")
 	public String submit(@Validated @ModelAttribute("emp") Employee employee, BindingResult br,
 			@RequestParam("empId") Integer id) {
-		// model attribute must be equal to the one in get method
-		if (br.hasErrors()) {
-			return "update";
-		}
 
+		if (br.hasErrors()) {
+			logger.info("field not field correctly");
+			return "update";
+			
+		}
+		
 		Employee emp = employeeservice.findById(id).get();
 
 		emp.setFirstName(employee.getFirstName());
@@ -73,27 +79,31 @@ public class EmployeeController {
 		emp.setStartDate(employee.getStartDate());
 	
 		employeeservice.save(emp);
-
+		logger.info("Update executed");
 		return "redirect:/employee";
 	}
 
 	@GetMapping("/delete")
 	public String supress(@RequestParam("id") Integer id) {
 		employeeservice.deleteById(id);
+		logger.info("deletion completed");
 		return "redirect:/employee";
 	}
 
 	@GetMapping("/add")
 	public ModelAndView showForm() {
+		logger.debug("New employee being registered");
 		return new ModelAndView("add", "employee", new Employee());
 	}
 
 	@PostMapping("/add")
 	public String ajout(@Validated @ModelAttribute("emp") Employee emp, BindingResult br) {
 		if (br.hasErrors()) {
+			logger.info("incorrect values input");
 			return "add";
 		}
 		employeeservice.save(emp);
+		logger.info("New employee in database");
 		return "redirect:/employee";
 	}
 
