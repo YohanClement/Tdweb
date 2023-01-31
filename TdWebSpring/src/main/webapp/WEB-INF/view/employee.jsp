@@ -26,76 +26,80 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.16.0/dist/locale/bootstrap-table-fr-FR.min.js"></script>
 
+<script src="extensions/i18n-enhance/bootstrap-table-i18n-enhance.js"></script>
+
 <link rel="stylesheet" href="<c:url value="resources/css/Style.css"/>">
 
 </head>
-<body class="body">
+<body >
 	<jsp:include page="_menu.jsp" />
+	<main>
+		<div class="container">
 
-	<div class="container">
+			<div class="card">
+				<h1 class="text-center">
+					<spring:message code="manage" />
+				</h1>
 
-		<div class="card">
-			<h1 class="text-center">
-				<spring:message code="manage" />
-			</h1>
+				<a href="add"><button class="btn btn-primary " type="submit">
+						<spring:message code="add" />
+					</button></a>
 
-			<a href="add"><button type="submit">
-					<spring:message code="add" />
-				</button></a>
-
-			<table class="table table-bordered" data-locale='table.lang' data-toggle="table"
-				data-pagination="true" data-search="true" data-page-size="5"
-				data-sort-class="table-active" data-sortable="true"
-				data-page-list="[5, 10, 25, 50, All]">
-				<thead class="th">
-					<tr>
-						<th data-field="id" data-sortable="true">ID</th>
-						<th data-field="firstname" data-sortable="true"><spring:message
-								code="firstname" /></th>
-						<th data-field="lastname" data-sortable="true"><spring:message
-								code="lastname" /></th>
-						<th data-field="startDate" data-sortable="true"><spring:message
-								code="startDate" /></th>
-						<th data-field="title" data-sortable="true"><spring:message
-								code="title" /></th>
-						<th><spring:message code="action" /></th>
-					</tr>
-				</thead>
-				<tbody>
-
-					<c:forEach items="${emps}" var="e">
-
+				<table class="table table-bordered" data-locale='table.lang'
+					data-toggle="table" data-pagination="true" data-search="true"
+					data-page-size="5" data-sort-class="table-active"
+					data-sortable="true" data-page-list="[5, 10, 25, 50, All]">
+					<thead class="th">
 						<tr>
-							<td>${e.empId}</td>
-							<td>${e.firstName}</td>
-							<td>${e.lastName}</td>
-							<td><fmt:formatDate value="${e.startDate}"
-									pattern="yyyy-MM-dd" /></td>
-							<td>${e.title}</td>
-
-							<td>
-								<div class="d-inline">
-									<form action="update" method="get">
-										<button type="submit" class="btn btn-outline-primary"
-											name="id" value="${e.empId}">
-											<i class="bi bi-pen-fill"></i>
-										</button>
-									</form>
-									<form action="delete" method="get">
-										<button class="btn btn-outline-primary" type="submit"
-											name="id" value="${e.empId}"
-											onclick="return confirm('confirmez la suppression');">
-											<i class="bi bi-x-square-fill"></i>
-										</button>
-									</form>
-
-								</div>
-							</td>
+							<th data-field="id" data-sortable="true">ID</th>
+							<th data-field="firstname" data-sortable="true"><spring:message
+									code="firstname" /></th>
+							<th data-field="lastname" data-sortable="true"><spring:message
+									code="lastname" /></th>
+							<th data-field="startDate" data-sortable="true"><spring:message
+									code="startDate" /></th>
+							<th data-field="title" data-sortable="true"><spring:message
+									code="title" /></th>
+							<th><spring:message code="action" /></th>
 						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+					</thead>
+					<tbody>
+
+						<c:forEach items="${emps}" var="e">
+
+							<tr>
+								<td>${e.empId}</td>
+								<td>${e.firstName}</td>
+								<td>${e.lastName}</td>
+								<td><fmt:formatDate value="${e.startDate}"
+										pattern="yyyy-MM-dd" /></td>
+								<td>${e.title}</td>
+
+								<td>
+									<div class="manage">
+										<form action="update" method="get">
+											<button type="submit" class="btn btn-outline-primary"
+												name="id" value="${e.empId}">
+												<i class="bi bi-pen-fill"></i>
+											</button>
+										</form>
+										<form action="delete" method="get">
+											<button class="btn btn-outline-primary" type="submit"
+												name="id" value="${e.empId}"
+												onclick="return confirm('confirmez la suppression');">
+												<i class="bi bi-x-square-fill"></i>
+											</button>
+										</form>
+
+									</div>
+								</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
 		</div>
-	</div>
+	</main>
+	<jsp:include page="footer.jsp"/>
 </body>
 </html>

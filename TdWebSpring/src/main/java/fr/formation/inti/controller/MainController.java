@@ -18,7 +18,6 @@ public class MainController {
 	@GetMapping(value = { "/", "/welcome" })
 	public String welcomePage(Model model) {
 		model.addAttribute("title", "Welcome");
-		model.addAttribute("message", "This is welcome page!");
 		return "welcomePage";
 	}
 
@@ -45,7 +44,7 @@ public class MainController {
 		// After user login successfully.
 		String userName = principal.getName();
 
-		model.addAttribute("message", "Hi " + userName + "<br> You succeded! " + principal.toString());
+		model.addAttribute("message", userName + "<br>");
 
 		return "userInfoPage";
 	}
@@ -55,9 +54,9 @@ public class MainController {
 
 		if (principal != null) {
 			model.addAttribute("message",
-					"Hi " + principal.getName() + "<br> You do not have permission to access this page!");
+					principal.getName() + "<br> ");
 		} else {
-			model.addAttribute("msg", "You do not have permission to access this page!");
+			model.addAttribute("msg", " ");
 		}
 		return "403Page";
 	}

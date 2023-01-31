@@ -5,14 +5,17 @@
 
 <html>
 <head>
+<meta charset="UTF-8"/>
 <link rel="stylesheet" href="<c:url value="resources/css/Style.css"/>">
 <title>Logout</title>
 </head>
 <body>
 	<jsp:include page="_menu.jsp" />
-
-	<h1><spring:message code="success"/></h1>
-	
+	<main>
+		<h1 class="text-center">
+			<spring:message code="success" />
+		</h1>
+	</main>
 	<jsp:include page="footer.jsp"/>
 </body>
 </html>

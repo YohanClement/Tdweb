@@ -1,5 +1,15 @@
 @charset "UTF-8";
 
+body {
+	display: flex;
+	flex-flow: column;
+	min-height: 100vh;
+}
+
+main {
+	flex: 1;
+}
+
 .error {
 	color: #ff0000;
 }
@@ -49,10 +59,6 @@ button {
 	width: 70%
 }
 
-span {
-	color: white;
-}
-
 .th {
 	background-color: violet;
 }
@@ -63,7 +69,34 @@ span {
 	padding: 2rem;
 }
 
-.log{
+.lang {
+	position: absolute;
+	top: 0;
+	right: 5rem;
+	padding: 0.5rem;
+	margin-right: 1rem;
+}
+
+.log {
+	position: absolute;
+	padding: 2rem;
+	right: 0;
+}
+
+footer {
 	display: flex;
-	justify-content: flex-end;
+	text-align: center;
+	background-color: black;
+	color: white;
+	padding: 2rem;
+	margin-top: 2rem;
+	width: 100%;
+	overflow: auto;
+	display: inline-block;
+	margin-bottom: 0;
+}
+
+.navbar {
+	position: relative;
+	padding-left: 1rem;
 }

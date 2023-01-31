@@ -1,7 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <%@page session="false"%>
 <%@page isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +19,9 @@
 </head>
 <body>
 	<jsp:include page="_menu.jsp" />
-	<h1>Message : ${message}</h1>
+	<main>
+		<h1 class="text-center aligns-items-center"><spring:message code="welcome"/></h1>
+	</main>
 	<jsp:include page="footer.jsp" />
 </body>
 </html>

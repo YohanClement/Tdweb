@@ -1,3 +1,4 @@
+²<%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page session="true"%>
 <%@page isELIgnored="false"%>
@@ -6,6 +7,7 @@
 
 <html>
 <head>
+<meta charset="UTF-8"/>
 <title>${title}</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
@@ -17,13 +19,18 @@
 
 </head>
 <body>
-    <jsp:include page="_menu.jsp" />
+	<jsp:include page="_menu.jsp" />
+	<main>
+		<h2 class="text-center">
+			<spring:message code="admin" />
+		</h2>
 
-    <h2><spring:message code="admin"/> Page</h2>
 
-
-    <h3><spring:message code="welcome"/> : ${pageContext.request.userPrincipal.name}</h3>
-
-    <jsp:include page="footer.jsp" /> 
+		<h3 class="text-center">
+			<spring:message code="welcome" />
+			: ${pageContext.request.userPrincipal.name}
+		</h3>
+	</main>
+	<jsp:include page="footer.jsp" />
 </body>
 </html>

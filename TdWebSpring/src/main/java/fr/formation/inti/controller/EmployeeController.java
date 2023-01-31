@@ -71,11 +71,9 @@ public class EmployeeController {
 		emp.setLastName(employee.getLastName());
 		emp.setTitle(employee.getTitle());
 		emp.setStartDate(employee.getStartDate());
-		System.out.println(emp.toString());
-
+	
 		employeeservice.save(emp);
 
-		System.out.println("Saved");
 		return "redirect:/employee";
 	}
 

@@ -4,6 +4,7 @@
 
 <html>
 <head>
+<meta charset="UTF-8"/>
 <title>Login</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
@@ -16,48 +17,42 @@
 </head>
 <body>
 	<jsp:include page="_menu.jsp" />
+	<main>
+		<div class="container">
+			<div class="card">
+				<h2 class="fw-normal mb-3 pb-3 text-center"
+					style="letter-spacing: 1px;">
+					<spring:message code="login" />
+				</h2>
 
-	<!-- /login?error=true -->
+				<form name='f'
+					action="${pageContext.request.contextPath}/j_spring_security_check"
+					method='POST'>
 
-	<h2 class="fw-normal mb-3 pb-3 text-center"
-		style="letter-spacing: 1px;"><spring:message code="login" /></h2>
+					<spring:message code="user"></spring:message>
+					<input class="form-control form-control-lg mb-3" type='text'
+						name='username' value=''>
 
-	<div class="container">
-		<div class="card">
-			<form name='f'
-				action="${pageContext.request.contextPath}/j_spring_security_check"
-				method='POST'>
-				<table>
-					<tr>
-						<td><spring:message code="user"></spring:message></td>
-						<td><input class="form-control form-control-lg" type='text'
-							name='username' value=''></td>
-					</tr>
-					<tr>
-						<td><spring:message code="password" /></td>
-						<td><input class="form-control form-control-lg"
-							type='password' name='password' /></td>
-					</tr>
-					<tr>
-						<td><input class="btn btn-primary" name="submit"
-							type="submit" value="submit" /></td>
-					</tr>
-				</table>
-			</form>
+					<spring:message code="password" />
+					<input class="form-control form-control-lg" type='password'
+						name='password' /> <input class="btn btn-primary mt-3"
+						name="submit" type="submit" value="submit" />
+				</form>
 
-			<c:if test="${param.error == 'true'}">
-				<div style="color: red; margin: 10px 0px;">
+				<c:if test="${param.error == 'true'}">
+					<div style="color: red; margin: 10px 0px;">
 
-					<spring:message code="failed" />
-					<br />
-					<spring:message code="reason" />
-					: ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+						<spring:message code="failed" />
+						<br />
+						<spring:message code="reason" />
+						: ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
 
-				</div>
-			</c:if>
+					</div>
+				</c:if>
 
+			</div>
 		</div>
-	</div>
+	</main>
 	<jsp:include page="footer.jsp" />
 </body>
 </html>
