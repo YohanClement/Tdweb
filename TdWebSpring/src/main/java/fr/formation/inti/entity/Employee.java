@@ -2,7 +2,6 @@ package fr.formation.inti.entity;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-import java.text.ParseException;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -86,13 +85,7 @@ public class Employee {
 		return startDate;
 	}
 
-	/**
-	 * @param startDate
-	 * @throws ParseException 
-	 */
 	public void setStartDate(Date datecrea){
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//		Date datecrea = sdf.parse(entry);
 		this.startDate = datecrea;
 	}
 

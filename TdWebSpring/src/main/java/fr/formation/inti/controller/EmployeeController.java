@@ -1,16 +1,14 @@
 package fr.formation.inti.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -41,12 +39,9 @@ public class EmployeeController {
 	}
 
 	@InitBinder
-    public void initBinder(WebDataBinder binder) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        sdf.setLenient(true);
-        binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
-        binder.setValidator(validator);
-    }
+	public void initBinder(WebDataBinder binder) {
+		binder.setValidator(validator);
+	}
 
 	@GetMapping("/employee")
 	public String showemp(Model model) {
@@ -57,21 +52,20 @@ public class EmployeeController {
 
 	@GetMapping("/update")
 	public String update(Model model, @RequestParam("id") Integer ID) {
-
 		Employee e = employeeservice.findById(ID).get();
 		model.addAttribute("emp", e);
 		return "update";
 	}
 
 	@PostMapping("/update")
-	public String submit(@ModelAttribute("emp") Employee employee, @RequestParam("id") Integer id, BindingResult br) {
+	public String submit(@Validated @ModelAttribute("emp") Employee employee, BindingResult br,
+			@RequestParam("empId") Integer id) {
 		// model attribute must be equal to the one in get method
-//		if (br.hasErrors()) {
-//			return "zodiac";
-//		}
-		
+		if (br.hasErrors()) {
+			return "update";
+		}
+
 		Employee emp = employeeservice.findById(id).get();
-		System.out.println("ouiiiiii");
 
 		emp.setFirstName(employee.getFirstName());
 		emp.setLastName(employee.getLastName());
@@ -97,16 +91,12 @@ public class EmployeeController {
 	}
 
 	@PostMapping("/add")
-	public String ajout(@ModelAttribute("emp") Employee employee, BindingResult result) {
-		Employee emp = new Employee();
-		emp.setFirstName(employee.getFirstName());
-		emp.setLastName(employee.getLastName());
-		emp.setTitle(employee.getTitle());
-		emp.setStartDate(employee.getStartDate());
-
+	public String ajout(@Validated @ModelAttribute("emp") Employee emp, BindingResult br) {
+		if (br.hasErrors()) {
+			return "add";
+		}
 		employeeservice.save(emp);
-//		employeeservice.save(employee);
-		return "employee";
+		return "redirect:/employee";
 	}
 
 }

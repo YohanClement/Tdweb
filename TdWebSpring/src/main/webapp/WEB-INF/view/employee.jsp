@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <!DOCTYPE html>
 <html>
@@ -22,9 +23,10 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 <link rel="stylesheet"
 	href="https://unpkg.com/bootstrap-table@1.21.2/dist/bootstrap-table.min.css">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.16.0/dist/locale/bootstrap-table-fr-FR.min.js"></script>
 
-
-<link rel="stylesheet" href="Styles.css">
+<link rel="stylesheet" href="<c:url value="resources/css/Style.css"/>">
 
 </head>
 <body class="body">
@@ -33,23 +35,30 @@
 	<div class="container">
 
 		<div class="card">
-			<h1 class="text-center">Gestion des employé.e.s</h1>
-			
-			<a href="add"><button type="submit">Ajouter un employer</button></a>
-			
-			<table class="table table-bordered" data-toggle="table"
+			<h1 class="text-center">
+				<spring:message code="manage" />
+			</h1>
+
+			<a href="add"><button type="submit">
+					<spring:message code="add" />
+				</button></a>
+
+			<table class="table table-bordered" data-locale='table.lang' data-toggle="table"
 				data-pagination="true" data-search="true" data-page-size="5"
 				data-sort-class="table-active" data-sortable="true"
 				data-page-list="[5, 10, 25, 50, All]">
 				<thead class="th">
 					<tr>
 						<th data-field="id" data-sortable="true">ID</th>
-						<th data-field="firstname" data-sortable="true">Prénom</th>
-						<th data-field="lastname" data-sortable="true">Nom de famille</th>
-						<th data-field="startDate" data-sortable="true">Date d'entrée</th>
-						<th data-field="title" data-sortable="true">Titre</th>
-						<th>Gestion</th>
-
+						<th data-field="firstname" data-sortable="true"><spring:message
+								code="firstname" /></th>
+						<th data-field="lastname" data-sortable="true"><spring:message
+								code="lastname" /></th>
+						<th data-field="startDate" data-sortable="true"><spring:message
+								code="startDate" /></th>
+						<th data-field="title" data-sortable="true"><spring:message
+								code="title" /></th>
+						<th><spring:message code="action" /></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -77,7 +86,7 @@
 											name="id" value="${e.empId}"
 											onclick="return confirm('confirmez la suppression');">
 											<i class="bi bi-x-square-fill"></i>
-											</button>
+										</button>
 									</form>
 
 								</div>
