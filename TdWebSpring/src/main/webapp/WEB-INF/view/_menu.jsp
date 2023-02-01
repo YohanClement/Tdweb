@@ -26,13 +26,18 @@
 				href="${pageContext.request.contextPath}/employee"><spring:message
 					code="employee" /></a>
 		</sec:authorize>
-		
-			<sec:authorize access="isAuthenticated()">
+		<sec:authorize access="!isAuthenticated()">
      | &nbsp;
 				<a class="nav-link text-white log"
-					href="${pageContext.request.contextPath}/logout"><spring:message
-						code="logout" /></a>
-			</sec:authorize>
+				href="${pageContext.request.contextPath}/login"><spring:message
+					code="login" /></a>
+		</sec:authorize>
+		<sec:authorize access="isAuthenticated()">
+     | &nbsp;
+				<a class="nav-link text-white log"
+				href="${pageContext.request.contextPath}/logout"><spring:message
+					code="logout" /></a>
+		</sec:authorize>
 		<div class="lang">
 			&nbsp; <a href="?lang=en"><img
 				src="${pageContext.request.contextPath}/resources/img/En.png"
