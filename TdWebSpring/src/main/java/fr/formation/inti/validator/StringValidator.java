@@ -25,6 +25,18 @@ public class StringValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "startDate", "startDate.required");
 		
 		Employee emp = (Employee) target;
+		int max_lenght = 20;
+		if(emp.getFirstName().length()>max_lenght) {
+			errors.rejectValue("firstName", "lenght");
+		}
+		
+		if(emp.getLastName().length()>max_lenght) {
+			errors.rejectValue("lastName", "lenght");
+		}
+		
+		if(emp.getTitle().length()>max_lenght) {
+			errors.rejectValue("title", "lenght");
+		}
 	
 
 	}
