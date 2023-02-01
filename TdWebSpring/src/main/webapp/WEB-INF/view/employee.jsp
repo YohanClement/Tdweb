@@ -45,7 +45,7 @@
 						<spring:message code="add" />
 					</button></a>
 
-				<table class="table table-bordered" data-locale='table.lang'
+				<table class="table table-bordered" data-locale='<spring:message code="table.lang"/>'
 					data-toggle="table" data-pagination="true" data-search="true"
 					data-page-size="5" data-sort-class="table-active"
 					data-sortable="true" data-page-list="[5, 10, 25, 50, All]">
