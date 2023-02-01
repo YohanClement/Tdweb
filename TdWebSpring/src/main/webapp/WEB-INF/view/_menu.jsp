@@ -13,28 +13,28 @@
 	</button>
 	<div class="collapse navbar-collapse" id="navbarNav">
 
-		<a class="nav-link text-white"
+		<a class="nav-link text-white active"
 			href="${pageContext.request.contextPath}/welcome"> <spring:message
-				code="Home" /></a> | &nbsp; <a class="nav-link text-white"
+				code="Home" /></a> | &nbsp; <a class="nav-link text-white active"
 			href="${pageContext.request.contextPath}/userInfo"><spring:message
-				code="info" /></a> | &nbsp; <a class="nav-link text-white"
+				code="info" /></a> | &nbsp; <a class="nav-link text-white active"
 			href="${pageContext.request.contextPath}/admin"><spring:message
 				code="admin" /></a>
 
 		<sec:authorize access="hasRole('ADMIN')">
-		| &nbsp;<a class="nav-link text-white"
+		| &nbsp;<a class="nav-link text-white active"
 				href="${pageContext.request.contextPath}/employee"><spring:message
 					code="employee" /></a>
 		</sec:authorize>
 		<sec:authorize access="!isAuthenticated()">
      | &nbsp;
-				<a class="nav-link text-white log"
+				<a class="nav-link text-white log active"
 				href="${pageContext.request.contextPath}/login"><spring:message
 					code="login" /></a>
 		</sec:authorize>
 		<sec:authorize access="isAuthenticated()">
      | &nbsp;
-				<a class="nav-link text-white log"
+				<a class="nav-link text-white active log"
 				href="${pageContext.request.contextPath}/logout"><spring:message
 					code="logout" /></a>
 		</sec:authorize>

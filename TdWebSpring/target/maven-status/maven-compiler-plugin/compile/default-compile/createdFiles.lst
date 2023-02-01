@@ -8,6 +8,7 @@ fr\formation\inti\config\SpringSecurityInitializer.class
 fr\formation\inti\controller\MainController.class
 fr\formation\inti\dao\Userdao.class
 fr\formation\inti\dao\UserServiceImpl.class
+fr\formation\inti\validator\StringValidator.class
 fr\formation\inti\config\Dispatcher.class
 fr\formation\inti\dao\EmployeeService.class
 fr\formation\inti\config\WebMVCcongif.class

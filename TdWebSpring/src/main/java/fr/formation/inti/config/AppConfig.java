@@ -50,7 +50,7 @@ public class AppConfig {
 	public MessageSource getMessageResource() {
 		ReloadableResourceBundleMessageSource messageResource = new ReloadableResourceBundleMessageSource();
 		messageResource.setBasename("classpath:i18n/message");
-		messageResource.setDefaultEncoding("UTF-8");
+		messageResource.setDefaultEncoding("ISO-8859-1");
 		return messageResource;
 	}
 

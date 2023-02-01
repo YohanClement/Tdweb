@@ -14,17 +14,15 @@ import fr.formation.inti.authentication.MyDBAuthenticationService;
 @Configuration
 @EnableWebSecurity
 public class Websecurity extends WebSecurityConfigurerAdapter {
-	
-	
+
 	@Autowired
 	MyDBAuthenticationService myDBAauthenticationService;
-	
+
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
 
 		return new BCryptPasswordEncoder();
 	}
-
 
 	public void configure(HttpSecurity http) throws Exception {
 
@@ -38,8 +36,13 @@ public class Websecurity extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/userInfo").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
 
 		// For ADMIN only.
-		http.authorizeRequests().antMatchers("/admin", "/employee", "/delete", "/update").access("hasRole('ROLE_ADMIN')");
-
+		http.authorizeRequests().antMatchers("/admin", "/employee", "/delete", "/update")
+				.access("hasRole('ROLE_ADMIN')");
+		
+		
+//		http.authorizeRequests().antMatchers("/Arceus/**").permitAll();
+		
+		
 		// When the user has logged in as XX.
 		// But access a page that requires role YY,
 		// AccessDeniedException will throw.
@@ -57,7 +60,6 @@ public class Websecurity extends WebSecurityConfigurerAdapter {
 				// Config for Logout Page
 				.and().logout().logoutUrl("/logout").logoutSuccessUrl("/logoutSuccessful");
 	}
-
 
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {

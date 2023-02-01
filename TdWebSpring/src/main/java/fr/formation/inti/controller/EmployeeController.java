@@ -45,6 +45,12 @@ public class EmployeeController {
 		binder.setValidator(validator);
 	}
 
+	/**
+	 * SERVLET TO REDIRECTY WITH THE LIST OF EMPLOYEE
+	 * 
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/employee")
 	public String showemp(Model model) {
 		logger.info("charging all employees");
@@ -53,6 +59,13 @@ public class EmployeeController {
 		return "employee";
 	}
 
+	/**
+	 * GET THE emp by using the id and filling the different input in the next form
+	 * 
+	 * @param model
+	 * @param ID
+	 * @return
+	 */
 	@GetMapping("/update")
 	public String update(Model model, @RequestParam("id") Integer ID) {
 		logger.info("updating");
@@ -61,6 +74,14 @@ public class EmployeeController {
 		return "update";
 	}
 
+	/**
+	 * updating employee or redirecting to the form if errors occured
+	 * 
+	 * @param employee
+	 * @param br
+	 * @param id
+	 * @return
+	 */
 	@PostMapping("/update")
 	public String submit(@Validated @ModelAttribute("emp") Employee employee, BindingResult br,
 			@RequestParam("empId") Integer id) {
@@ -68,21 +89,27 @@ public class EmployeeController {
 		if (br.hasErrors()) {
 			logger.info("field not field correctly");
 			return "update";
-			
+
 		}
-		
+
 		Employee emp = employeeservice.findById(id).get();
 
 		emp.setFirstName(employee.getFirstName());
 		emp.setLastName(employee.getLastName());
 		emp.setTitle(employee.getTitle());
 		emp.setStartDate(employee.getStartDate());
-	
+
 		employeeservice.save(emp);
 		logger.info("Update executed");
 		return "redirect:/employee";
 	}
 
+	/**
+	 * deleting the user after confirmation on page
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/delete")
 	public String supress(@RequestParam("id") Integer id) {
 		employeeservice.deleteById(id);
@@ -90,12 +117,23 @@ public class EmployeeController {
 		return "redirect:/employee";
 	}
 
+	/**
+	 * sent to add form
+	 * 
+	 * @return
+	 */
 	@GetMapping("/add")
 	public ModelAndView showForm() {
 		logger.debug("New employee being registered");
 		return new ModelAndView("add", "employee", new Employee());
 	}
 
+	/**
+	 * registering a new entry to database or redirect to form if fields contains errors
+	 * @param emp
+	 * @param br
+	 * @return
+	 */
 	@PostMapping("/add")
 	public String ajout(@Validated @ModelAttribute("emp") Employee emp, BindingResult br) {
 		if (br.hasErrors()) {
