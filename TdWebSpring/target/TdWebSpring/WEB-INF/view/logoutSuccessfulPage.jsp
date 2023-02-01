@@ -19,7 +19,7 @@
 	<jsp:include page="_menu.jsp" />
 	<main>
 		<h1 class="text-center">
-			<spring:message code="success" />
+			<spring:message code="logout"/> : <spring:message code="success" />
 		</h1>
 	</main>
 	<jsp:include page="footer.jsp" />

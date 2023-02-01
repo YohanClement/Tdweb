@@ -13,13 +13,21 @@
 	</button>
 	<div class="collapse navbar-collapse" id="navbarNav">
 
-		<a class="nav-link text-white"
+		<a class="nav-link text-white "
 			href="${pageContext.request.contextPath}/welcome"> <spring:message
 				code="Home" /></a> | &nbsp; <a class="nav-link text-white"
 			href="${pageContext.request.contextPath}/userInfo"><spring:message
 				code="info" /></a> | &nbsp; <a class="nav-link text-white"
 			href="${pageContext.request.contextPath}/admin"><spring:message
 				code="admin" /></a>
+		
+		
+		<sec:authorize access="!isAuthenticated()">
+		&nbsp;<a class="nav-link" href="${pageContext.request.contextPath}/adduser"><button
+					class="btn btn-primary">
+					<spring:message code="new" />
+				</button></a>
+		</sec:authorize>
 
 		<sec:authorize access="hasRole('ADMIN')">
 		| &nbsp;<a class="nav-link text-white"

@@ -14,4 +14,6 @@ fr\formation\inti\dao\EmployeeService.class
 fr\formation\inti\config\WebMVCcongif.class
 fr\formation\inti\controller\EmployeeController.class
 fr\formation\inti\dao\UserService.class
+fr\formation\inti\controller\UsersController.class
 fr\formation\inti\entity\Users.class
+fr\formation\inti\validator\UserValidator.class

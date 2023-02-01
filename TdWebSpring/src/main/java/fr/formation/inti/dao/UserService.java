@@ -10,6 +10,8 @@ public interface UserService {
 	Optional<Users> findById(Integer id);
 	
 	List<Users> findAll();
+	
+	Users save(Users user);
 
 	void deleteById(Integer id);
 

@@ -71,6 +71,7 @@ public class EmployeeController {
 		logger.info("updating");
 		Employee e = employeeservice.findById(ID).get();
 		model.addAttribute("emp", e);
+		model.addAttribute("emp.startDate", e.getStartDate());
 		return "update";
 	}
 
@@ -83,10 +84,11 @@ public class EmployeeController {
 	 * @return
 	 */
 	@PostMapping("/update")
-	public String submit(@Validated @ModelAttribute("emp") Employee employee, BindingResult br,
+	public String submit(Model model, @Validated @ModelAttribute("emp") Employee employee, BindingResult br,
 			@RequestParam("empId") Integer id) {
 
 		if (br.hasErrors()) {
+			model.addAttribute("emp.startDate", employee.getStartDate());
 			logger.info("field not field correctly");
 			return "update";
 
