@@ -71,10 +71,9 @@ button {
 
 .lang {
 	position: absolute;
-	top: 0;
+	top: 0.5rem;
 	right: 5rem;
 	margin-right: 5rem;
-	pading: 0.5rem;
 }
 
 .log {

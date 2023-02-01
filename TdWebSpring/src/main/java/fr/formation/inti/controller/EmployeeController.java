@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,20 +28,11 @@ public class EmployeeController {
 	EmployeeService employeeservice;
 
 	@Autowired
-	@Qualifier("stringValidator") // nom du validator
-	private Validator validator;
-
-	public Validator getValidator() {
-		return validator;
-	}
-
-	public void setValidator(Validator validator) {
-		this.validator = validator;
-	}
+	private Validator stringValidator;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-		binder.setValidator(validator);
+		binder.setValidator(stringValidator);
 	}
 
 	/**
@@ -67,12 +57,11 @@ public class EmployeeController {
 	 * @return
 	 */
 	@GetMapping("/update")
-	public String update(Model model, @RequestParam("id") Integer ID) {
+	public ModelAndView showForm(Model model, @RequestParam("id") Integer ID) {
+		
 		logger.info("updating");
 		Employee e = employeeservice.findById(ID).get();
-		model.addAttribute("emp", e);
-		model.addAttribute("emp.startDate", e.getStartDate());
-		return "update";
+		return new ModelAndView("update", "emp", e);
 	}
 
 	/**
@@ -84,17 +73,17 @@ public class EmployeeController {
 	 * @return
 	 */
 	@PostMapping("/update")
-	public String submit(Model model, @Validated @ModelAttribute("emp") Employee employee, BindingResult br,
-			@RequestParam("empId") Integer id) {
+	public String submit(Model model, @Validated @ModelAttribute("emp") Employee employee, BindingResult br) {
 
 		if (br.hasErrors()) {
-			model.addAttribute("emp.startDate", employee.getStartDate());
+//			model.addAttribute("startDate", employee.getStartDate());
+			model.addAttribute("emp", employee);
 			logger.info("field not field correctly");
 			return "update";
 
 		}
 
-		Employee emp = employeeservice.findById(id).get();
+		Employee emp = employeeservice.findById(employee.getEmpId()).get();
 
 		emp.setFirstName(employee.getFirstName());
 		emp.setLastName(employee.getLastName());
@@ -126,8 +115,8 @@ public class EmployeeController {
 	 */
 	@GetMapping("/add")
 	public ModelAndView showForm() {
-		logger.debug("New employee being registered");
-		return new ModelAndView("add", "employee", new Employee());
+		logger.info("New user being registered");
+		return new ModelAndView("add", "emp", new Employee());
 	}
 
 	/**
@@ -137,8 +126,9 @@ public class EmployeeController {
 	 * @return
 	 */
 	@PostMapping("/add")
-	public String ajout(@Validated @ModelAttribute("emp") Employee emp, BindingResult br) {
+	public String ajout(Model model,@Validated @ModelAttribute("emp") Employee emp, BindingResult br) {
 		if (br.hasErrors()) {
+			model.addAttribute("emp", emp);
 			logger.info("incorrect values input");
 			return "add";
 		}

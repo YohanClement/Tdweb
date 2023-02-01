@@ -20,7 +20,7 @@
 	<main>
 		<div class="container">
 			<div class="card">
-				<form:form method="POST" action="add" modelAttribute="employee">
+				<form:form method="POST" action="add" modelAttribute="emp">
 					<h2 class="fw-normal text-center">
 						<spring:message code="add.title" />
 					</h2>
@@ -30,7 +30,7 @@
 							<spring:message code="firstname" />
 						</form:label>
 						<form:input class="form-control form-control-lg" path="firstName"
-							value="${emp.firstName}" min="3" max="45" />
+							 min="3" max="45" />
 						<form:errors path="firstName" cssClass="error" />
 					</div>
 
@@ -39,7 +39,7 @@
 							<spring:message code="lastname" />
 						</form:label>
 						<form:input class="form-control form-control-lg" path="lastName"
-							value="${emp.lastName}" min="3" max="45" />
+							 min="3" max="45" />
 						<form:errors path="lastName" cssClass="error" />
 					</div>
 
@@ -49,7 +49,7 @@
 							<spring:message code="title" />
 						</form:label>
 						<form:input class="form-control form-control-lg" path="title"
-							value="${emp.title}" min="3" max="45" />
+						 min="3" max="45" />
 						<form:errors path="title" cssClass="error" />
 					</div>
 
@@ -58,7 +58,7 @@
 							<spring:message code="startDate" />
 						</form:label>
 						<form:input class="form-control form-control-lg" path="startDate"
-							type="date" value="${emp.startDate}" />
+							type="date" />
 						<form:errors path="startDate" cssClass="error" />
 					</div>
 

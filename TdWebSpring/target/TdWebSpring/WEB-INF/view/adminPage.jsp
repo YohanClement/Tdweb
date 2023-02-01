@@ -3,7 +3,7 @@
 <%@page session="true"%>
 <%@page isELIgnored="false"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-
+<!DOCTYPE html>
 <html>
 <head>
 <title>${title}</title>
@@ -15,7 +15,6 @@
 </script>
 <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
 <link rel="stylesheet" href="<c:url value="resources/css/Style.css"/>">
-<base href="/">
 </head>
 <body>
 	<jsp:include page="_menu.jsp" />

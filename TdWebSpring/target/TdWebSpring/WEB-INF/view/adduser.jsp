@@ -12,7 +12,7 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.js"></script>
 
-<link rel="stylesheet" href="<c:url value="resources/css/Style.css"/>">
+<link rel="stylesheet" href='<c:url value="resources/css/Style.css"/>'>
 <title>Insert title here</title>
 </head>
 <body>
@@ -22,7 +22,7 @@
 			<div class="card">
 				<form:form method="POST" action="adduser" modelAttribute="user">
 					<h2 class="fw-normal text-center">
-						<spring:message code="add.title" />
+						<spring:message code="add.user" />
 					</h2>
 
 					<div class="form-outline mb-4">
@@ -31,7 +31,7 @@
 						</form:label>
 						<form:input class="form-control form-control-lg" path="firstname"
 							min="3" max="45" />
-						<%-- <form:errors path="firstname" cssClass="error" /> --%>
+						<form:errors path="firstname" cssClass="error" />
 					</div>
 
 					<div class="form-outline mb-4">
@@ -40,12 +40,12 @@
 						</form:label>
 						<form:input class="form-control form-control-lg" path="lastname"
 							min="3" max="45" />
-						<%-- <form:errors path="lastname" cssClass="error" /> --%>
+						<form:errors path="lastname" cssClass="error" />
 					</div>
 
 
 					<div class="form-outline mb-4">
-						<form:label path="title">
+						<form:label path="rolename">
 							<spring:message code="title" />
 						</form:label>
 						<form:input class="form-control form-control-lg" path="rolename"
@@ -55,10 +55,10 @@
 
 					<div class="form-outline mb-4">
 						<form:label path="email">
-							<spring:message code="email" />
+							<spring:message code="user" />
 						</form:label>
-						<form:input class="form-control form-control-lg" path="email" />
-					<%-- 	<form:errors path="firstname" cssClass="error" /> --%>
+						<form:input path="email" class="form-control form-control-lg"/>
+						<form:errors path="firstname" cssClass="error" />
 					</div>
 
 					<div class="form-outline mb-4">
@@ -66,11 +66,13 @@
 							<spring:message code="password" />
 						</form:label>
 						<form:input class="form-control form-control-lg" path="password"/>
-					<%-- 	<form:errors path="firstname" cssClass="error" /> --%>
+						<form:errors path="password" cssClass="error" />
 					</div>
 
 					<div class="pt-1 mb-4">
-						<button class="btn btn-primary mb-4" type="submit"><spring:message code="add"/></button>
+						<button class="btn btn-primary mb-4" type="submit">
+							<spring:message code="add" />
+						</button>
 					</div>
 				</form:form>
 			</div>

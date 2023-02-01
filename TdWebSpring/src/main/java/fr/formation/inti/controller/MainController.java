@@ -62,7 +62,7 @@ public class MainController {
 		if (principal != null) {
 			model.addAttribute("message", principal.getName() + "<br> ");
 		} else {
-			model.addAttribute("msg", " ");
+			
 		}
 		return "403Page";
 	}

@@ -30,7 +30,6 @@ public class Websecurity extends WebSecurityConfigurerAdapter {
 
 		// The pages does not require login
 		http.authorizeRequests().antMatchers("/", "/welcome", "/login", "/logout", "/adduser").permitAll();
-
 		// /userInfo page requires login as USER or ADMIN.
 		// If no login, it will redirect to /login page.
 		http.authorizeRequests().antMatchers("/userInfo").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
@@ -38,11 +37,7 @@ public class Websecurity extends WebSecurityConfigurerAdapter {
 		// For ADMIN only.
 		http.authorizeRequests().antMatchers("/admin", "/employee", "/delete", "/update")
 				.access("hasRole('ROLE_ADMIN')");
-		
-		
-//		http.authorizeRequests().antMatchers("/Arceus/**").permitAll();
-		
-		
+
 		// When the user has logged in as XX.
 		// But access a page that requires role YY,
 		// AccessDeniedException will throw.

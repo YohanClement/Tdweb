@@ -11,8 +11,8 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.js"></script>
-
-<link rel="stylesheet" href="<c:url value="resources/css/Style.css"/>">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/Style.css" />
 <title>Insert title here</title>
 </head>
 <body>
@@ -57,7 +57,7 @@
 						<form:label path="email">
 							<spring:message code="user" />
 						</form:label>
-						<form:input path="email" class="form-control form-control-lg"/>
+						<form:input path="email" class="form-control form-control-lg" />
 						<form:errors path="firstname" cssClass="error" />
 					</div>
 
@@ -65,7 +65,7 @@
 						<form:label path="password">
 							<spring:message code="password" />
 						</form:label>
-						<form:input class="form-control form-control-lg" path="password"/>
+						<form:input class="form-control form-control-lg" path="password" />
 						<form:errors path="password" cssClass="error" />
 					</div>
 
