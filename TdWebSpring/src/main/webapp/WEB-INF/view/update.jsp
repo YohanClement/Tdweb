@@ -10,10 +10,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+	rel="stylesheet">
 <script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.js"></script>
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js">
+	
+</script>
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/Style.css" />
 <title>Mise a jour</title>
@@ -69,6 +73,7 @@
 					<div class="pt-1 mb-4">
 						<input class="btn btn-primary mb-4" type="submit"
 							value="<spring:message code="send"/>" />
+							<form:button type="submit" value='<spring:message code="cancel"/>'/>
 					</div>
 				</form:form>
 			</div>
